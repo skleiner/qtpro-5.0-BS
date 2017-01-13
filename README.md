@@ -39,6 +39,8 @@ Who has the old version already installed:
 
 - upload and install the product info content modules and (IMPORTANT!) uncomment the complete options/attributes section in product_info.php
 
+- replace all pad class files
+
 For new installations:
 
 - instructions are not updated yet
