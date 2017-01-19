@@ -518,7 +518,7 @@ Lets get started... oh, and try using the neat "checkbox feature".
 // Function to build menu of available class files given a file prefix
 // Used for configuring plug-ins for product information attributes
   function tep_cfg_pull_down_class_files($prefix, $current_file) {
-    $d=DIR_FS_CATALOG . DIR_WS_CLASSES;
+    $d=DIR_FS_CATALOG . 'includes/classes/';
     $function_directory = dir ($d);
 
     while (false !== ($function = $function_directory->read())) {
@@ -607,7 +607,7 @@ Lets get started... oh, and try using the neat "checkbox feature".
 <p>Add before the ending ?&gt;</p>
 <p>
   <textarea name="textarea11" cols="120" rows="7" readonly="readonly" id="textarea12">//++++ QT Pro: Begin Changed code
-require(DIR_WS_FUNCTIONS . 'qtpro_functions.php');
+require('includes/functions/qtpro_functions.php');
 //++++ QT Pro: End Changed code
   </textarea>
   <input type="checkbox" name="checkbox6" id="checkbox12" />
@@ -699,7 +699,7 @@ define('BOX_REPORTS_STATS_LOW_STOCK_ATTRIB', 'Stock Report');
 <p>
   <textarea name="textarea19" cols="120" rows="7" readonly="readonly" id="textarea22">//++++ QT Pro: Begin Added code
 	//Create the product investigation for this product that are used in this page.
-	$product_investigation = qtpro_doctor_investigate_product($HTTP_GET_VARS['pID']);
+	$product_investigation = qtpro_doctor_investigate_product($_GET['pID']);
 //++++ QT Pro: End Added code
   </textarea>
   <input type="checkbox" name="checkbox12" id="checkbox22" />
@@ -707,14 +707,14 @@ define('BOX_REPORTS_STATS_LOW_STOCK_ATTRIB', 'Stock Report');
 <p class="thick">9.2)</p>
 <p>Find:</p>
 <p>
-  <textarea name="textarea20" cols="120" rows="7" readonly="readonly" id="textarea24">          $sql_data_array = array('products_quantity' => (int)tep_db_prepare_input($HTTP_POST_VARS['products_quantity']),
-                                  'products_model' => tep_db_prepare_input($HTTP_POST_VARS['products_model']),
-                                  'products_price' => tep_db_prepare_input($HTTP_POST_VARS['products_price']),
+  <textarea name="textarea20" cols="120" rows="7" readonly="readonly" id="textarea24">          $sql_data_array = array('products_quantity' => (int)tep_db_prepare_input($_POST['products_quantity']),
+                                  'products_model' => tep_db_prepare_input($_POST['products_model']),
+                                  'products_price' => tep_db_prepare_input($_POST['products_price']),
                                   'products_date_available' => $products_date_available,
-                                  'products_weight' => (float)tep_db_prepare_input($HTTP_POST_VARS['products_weight']),
-                                  'products_status' => tep_db_prepare_input($HTTP_POST_VARS['products_status']),
-                                  'products_tax_class_id' => tep_db_prepare_input($HTTP_POST_VARS['products_tax_class_id']),
-                                  'manufacturers_id' => (int)tep_db_prepare_input($HTTP_POST_VARS['manufacturers_id']));</textarea>
+                                  'products_weight' => (float)tep_db_prepare_input($_POST['products_weight']),
+                                  'products_status' => tep_db_prepare_input($_POST['products_status']),
+                                  'products_tax_class_id' => tep_db_prepare_input($_POST['products_tax_class_id']),
+                                  'manufacturers_id' => (int)tep_db_prepare_input($_POST['manufacturers_id']));</textarea>
 </p>
 <p>Add Beneath:</p>
 <p>
@@ -762,7 +762,7 @@ define('BOX_REPORTS_STATS_LOW_STOCK_ATTRIB', 'Stock Report');
 			if($product_investigation['has_tracked_options'] or $product_investigation['stock_entries_count'] > 0)
 			{
 		  	?>
-			<td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;<a href="' . tep_href_link("stock.php", 'product_id=' . $pInfo->products_id) . ' " target="_blank">' . tep_image_button('button_stock.gif', "Stock") . '</a>'?></td>
+			<td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . '&nbsp;<a href="' . tep_href_link('stock.php', 'product_id=' . $pInfo->products_id) . ' " target="_blank">' . tep_image_button('button_stock.gif', "Stock") . '</a>'?></td>
 			<?php 
 			
 			}else{
@@ -779,11 +779,11 @@ define('BOX_REPORTS_STATS_LOW_STOCK_ATTRIB', 'Stock Report');
 <p class="thick">9.5)</p>
 <p>Find:</p>
 <p>
-  <textarea name="textarea23" cols="120" rows="7" readonly="readonly" id="textarea30">$contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT, 'document', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product')) . tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=delete_product')) . tep_draw_button(IMAGE_MOVE, 'arrow-4', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=move_product')) . tep_draw_button(IMAGE_COPY_TO, 'copy', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to')));</textarea>
+  <textarea name="textarea23" cols="120" rows="7" readonly="readonly" id="textarea30">$contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT, 'document', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product')) . tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=delete_product')) . tep_draw_button(IMAGE_MOVE, 'arrow-4', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=move_product')) . tep_draw_button(IMAGE_COPY_TO, 'copy', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to')));</textarea>
 </p>
 <p>Change to: </p>
 <p>
-  <textarea name="textarea23" cols="120" rows="7" readonly="readonly" id="textarea30">$contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT, 'document', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product')) . tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=delete_product')) . tep_draw_button(IMAGE_MOVE, 'arrow-4', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=move_product')) . tep_draw_button(IMAGE_COPY_TO, 'copy', tep_href_link(FILENAME_CATEGORIES, 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to')) . tep_draw_button(IMAGE_QTSTOCK, 'copy', tep_href_link("stock.php", 'product_id=' . $pInfo->products_id)));</textarea>
+  <textarea name="textarea23" cols="120" rows="7" readonly="readonly" id="textarea30">$contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT, 'document', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product')) . tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=delete_product')) . tep_draw_button(IMAGE_MOVE, 'arrow-4', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=move_product')) . tep_draw_button(IMAGE_COPY_TO, 'copy', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to')) . tep_draw_button(IMAGE_QTSTOCK, 'copy', tep_href_link('stock.php', 'product_id=' . $pInfo->products_id)));</textarea>
   <input type="checkbox" name="checkbox16" id="checkbox30" />
 </p>
 <p>&nbsp;</p>
@@ -805,7 +805,7 @@ define('BOX_REPORTS_STATS_LOW_STOCK_ATTRIB', 'Stock Report');
 $qtpro_sick_count = qtpro_sick_product_count();
 if($qtpro_sick_count != 0){
 ?>
-<table border="0" width="100%" cellspacing="0" cellpadding="0"><tr><td class="messageStackWarning"><?php echo 'Warning: There are '. $qtpro_sick_count . ' sick products in the database. Please visit <a href="' . tep_href_link(FILENAME_QTPRODOCTOR) . '" class="headerLink">the QTPro doctor</a>.'; ?></td></tr></table>
+<table border="0" width="100%" cellspacing="0" cellpadding="0"><tr><td class="messageStackWarning"><?php echo 'Warning: There are '. $qtpro_sick_count . ' sick products in the database. Please visit <a href="' . tep_href_link('qtprodoctor.php') . '" class="headerLink">the QTPro doctor</a>.'; ?></td></tr></table>
 <?php
 }
 //++++ QT Pro: End added code ?>
@@ -824,7 +824,7 @@ if($qtpro_sick_count != 0){
 <p>Change to:</p>
 <p>
   <textarea name="textarea26" cols="120" rows="7" readonly="readonly" id="textarea34">//++++ QT Pro: Begin Changed code
-          $track_stock=isset($HTTP_POST_VARS['track_stock'])?1:0;
+          $track_stock=isset($_POST['track_stock'])?1:0;
           tep_db_query("insert into " . TABLE_PRODUCTS_OPTIONS . " (products_options_id, products_options_name, language_id,products_options_track_stock) values ('" . (int)$products_options_id . "', '" . tep_db_input($option_name) . "', '" . (int)$languages[$i]['id'] . "', '" . (int)$track_stock . "')");
 //++++ QT Pro: End Changed Code
   </textarea>
@@ -839,7 +839,7 @@ if($qtpro_sick_count != 0){
 <p>Change to:</p>
 <p>
   <textarea name="textarea27" cols="120" rows="7" readonly="readonly" id="textarea36">//++++ QT Pro: Begin Changed code
-          $track_stock=isset($HTTP_POST_VARS['track_stock'])?1:0;
+          $track_stock=isset($_POST['track_stock'])?1:0;
           tep_db_query("update " . TABLE_PRODUCTS_OPTIONS . " set products_options_track_stock='" . (int)$track_stock . "',products_options_name = '" . tep_db_input($option_name) . "' where products_options_id = '" . (int)$option_id . "' and language_id = '" . (int)$languages[$i]['id'] . "'");
 //++++ QT Pro: End Changed Code</textarea>
   <input type="checkbox" name="checkbox19" id="checkbox36" />
@@ -854,7 +854,7 @@ If it is, go into the old file, and find what should come after the corisponding
   <textarea name="textarea28" cols="120" rows="7" readonly="readonly" id="textarea38"><!-- options //-->
 <?php
   if ($action == 'delete_product_option') { // delete product option
-    $options = tep_db_query("select products_options_id, products_options_name from " . TABLE_PRODUCTS_OPTIONS . " where products_options_id = '" . (int)$HTTP_GET_VARS['option_id'] . "' and language_id = '" . (int)$languages_id . "'");
+    $options = tep_db_query("select products_options_id, products_options_name from " . TABLE_PRODUCTS_OPTIONS . " where products_options_id = '" . (int)$_GET['option_id'] . "' and language_id = '" . (int)$languages_id . "'");
     $options_values = tep_db_fetch_array($options);
 ?>
               <tr>
@@ -866,7 +866,7 @@ If it is, go into the old file, and find what should come after the corisponding
                     <td colspan="3"><?php echo tep_black_line(); ?></td>
                   </tr>
 <?php
-    $products = tep_db_query("select p.products_id, pd.products_name, pov.products_options_values_name from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov, " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_DESCRIPTION . " pd where pd.products_id = p.products_id and pov.language_id = '" . (int)$languages_id . "' and pd.language_id = '" . (int)$languages_id . "' and pa.products_id = p.products_id and pa.options_id='" . (int)$HTTP_GET_VARS['option_id'] . "' and pov.products_options_values_id = pa.options_values_id order by pd.products_name");
+    $products = tep_db_query("select p.products_id, pd.products_name, pov.products_options_values_name from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov, " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_DESCRIPTION . " pd where pd.products_id = p.products_id and pov.language_id = '" . (int)$languages_id . "' and pd.language_id = '" . (int)$languages_id . "' and pa.products_id = p.products_id and pa.options_id='" . (int)$_GET['option_id'] . "' and pov.products_options_values_id = pa.options_values_id order by pd.products_name");
     if (tep_db_num_rows($products)) {
 ?>
                   <tr class="dataTableHeadingRow">
@@ -897,7 +897,7 @@ If it is, go into the old file, and find what should come after the corisponding
                     <td colspan="3" class="main"><br><?php echo TEXT_WARNING_OF_DELETE; ?></td>
                   </tr>
                   <tr>
-                    <td align="right" colspan="3" class="main"><br><?php echo '<a href="' . tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_cancel.gif', ' cancel '); ?></a>&nbsp;</td>
+                    <td align="right" colspan="3" class="main"><br><?php echo '<a href="' . tep_href_link('products_attributes.php', $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_cancel.gif', ' cancel '); ?></a>&nbsp;</td>
                   </tr>
 <?php
     } else {
@@ -906,7 +906,7 @@ If it is, go into the old file, and find what should come after the corisponding
                     <td class="main" colspan="3"><br><?php echo TEXT_OK_TO_DELETE; ?></td>
                   </tr>
                   <tr>
-                    <td class="main" align="right" colspan="3"><br><?php echo '<a href="' . tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, 'action=delete_option&option_id=' . $HTTP_GET_VARS['option_id'] . '&' . $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_delete.gif', ' delete '); ?></a>&nbsp;&nbsp;&nbsp;<?php echo '<a href="' . tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_cancel.gif', ' cancel '); ?></a>&nbsp;</td>
+                    <td class="main" align="right" colspan="3"><br><?php echo '<a href="' . tep_href_link('products_attributes.php', 'action=delete_option&option_id=' . $_GET['option_id'] . '&' . $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_delete.gif', ' delete '); ?></a>&nbsp;&nbsp;&nbsp;<?php echo '<a href="' . tep_href_link('products_attributes.php', $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_cancel.gif', ' cancel '); ?></a>&nbsp;</td>
                   </tr>
 <?php
     }
@@ -968,7 +968,7 @@ If it is, go into the old file, and find what should come after the corisponding
 ?>
               <tr class="<?php echo (floor($rows/2) == ($rows/2) ? 'attributes-even' : 'attributes-odd'); ?>">
 <?php
-      if (($action == 'update_option') && ($HTTP_GET_VARS['option_id'] == $options_values['products_options_id'])) {
+      if (($action == 'update_option') && ($_GET['option_id'] == $options_values['products_options_id'])) {
         echo '
         $inputs = '';
         for ($i = 0, $n = sizeof($languages); $i < $n; $i ++) {
@@ -986,7 +986,7 @@ If it is, go into the old file, and find what should come after the corisponding
 <?php
 //++++ QT Pro: End Changed Code
 ?>
-                <td align="center" class="smallText">&nbsp;<?php echo tep_image_submit('button_update.gif', IMAGE_UPDATE); ?>&nbsp;<?php echo '<a href="' . tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_cancel.gif', IMAGE_CANCEL); ?></a>&nbsp;</td>
+                <td align="center" class="smallText">&nbsp;<?php echo tep_image_submit('button_update.gif', IMAGE_UPDATE); ?>&nbsp;<?php echo '<a href="' . tep_href_link('products_attributes.php', $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_cancel.gif', IMAGE_CANCEL); ?></a>&nbsp;</td>
 <?php
         echo '
       } else {
@@ -1000,7 +1000,7 @@ If it is, go into the old file, and find what should come after the corisponding
 <?php
 //++++ QT Pro: End Changed Code
 ?>
-                <td align="center" class="smallText">&nbsp;<?php echo '<a href="' . tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, 'action=update_option&option_id=' . $options_values['products_options_id'] . '&' . $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_edit.gif', IMAGE_UPDATE); ?></a>&nbsp;&nbsp;<?php echo '<a href="' . tep_href_link(FILENAME_PRODUCTS_ATTRIBUTES, 'action=delete_product_option&option_id=' . $options_values['products_options_id'] . '&' . $page_info, 'NONSSL') , '">'; ?><?php echo tep_image_button('button_delete.gif', IMAGE_DELETE); ?></a>&nbsp;</td>
+                <td align="center" class="smallText">&nbsp;<?php echo '<a href="' . tep_href_link('products_attributes.php', 'action=update_option&option_id=' . $options_values['products_options_id'] . '&' . $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_edit.gif', IMAGE_UPDATE); ?></a>&nbsp;&nbsp;<?php echo '<a href="' . tep_href_link('products_attributes.php', 'action=delete_product_option&option_id=' . $options_values['products_options_id'] . '&' . $page_info, 'NONSSL') , '">'; ?><?php echo tep_image_button('button_delete.gif', IMAGE_DELETE); ?></a>&nbsp;</td>
 <?php
       }
 ?>
@@ -1195,31 +1195,31 @@ define('STOCK_LIST_IN_PI_TEXT_STOCK', 'Qty.');
 <p>includes/application_top.php</p>
 <p>Find:</p>
 <p>
-  <textarea name="textarea34" cols="120" rows="7" readonly="readonly" id="textarea50">     case 'add_product' :    if (isset($HTTP_POST_VARS['products_id']) && is_numeric($HTTP_POST_VARS['products_id'])) {
-                                $attributes = isset($HTTP_POST_VARS['id']) ? $HTTP_POST_VARS['id'] : '';
-                                $cart->add_cart($HTTP_POST_VARS['products_id'], $cart->get_quantity(tep_get_uprid($HTTP_POST_VARS['products_id'], $attributes))+1, $attributes);
+  <textarea name="textarea34" cols="120" rows="7" readonly="readonly" id="textarea50">     case 'add_product' :    if (isset($_POST['products_id']) && is_numeric($_POST['products_id'])) {
+                                $attributes = isset($_POST['id']) ? $_POST['id'] : '';
+                                $cart->add_cart($_POST['products_id'], $cart->get_quantity(tep_get_uprid($_POST['products_id'], $attributes))+1, $attributes);
                               }</textarea>
 </p>
 <p>Change to:</p>
 <p>
-  <textarea name="textarea35" cols="120" rows="7" readonly="readonly" id="textarea50">      case 'add_product' :    if (isset($HTTP_POST_VARS['products_id']) && is_numeric($HTTP_POST_VARS['products_id'])) {
+  <textarea name="textarea35" cols="120" rows="7" readonly="readonly" id="textarea50">      case 'add_product' :    if (isset($_POST['products_id']) && is_numeric($_POST['products_id'])) {
 //++++ QT Pro: Begin Changed code
                                 $attributes=array();
-                                if (isset($HTTP_POST_VARS['attrcomb']) && (preg_match("/^\d{1,10}-\d{1,10}(,\d{1,10}-\d{1,10})*$/",$HTTP_POST_VARS['attrcomb']))) {
-                                  $attrlist=explode(',',$HTTP_POST_VARS['attrcomb']);
+                                if (isset($_POST['attrcomb']) && (preg_match("/^\d{1,10}-\d{1,10}(,\d{1,10}-\d{1,10})*$/",$_POST['attrcomb']))) {
+                                  $attrlist=explode(',',$_POST['attrcomb']);
                                   foreach ($attrlist as $attr) {
                                     list($oid, $oval)=explode('-',$attr);
                                     if (is_numeric($oid) && $oid==(int)$oid && is_numeric($oval) && $oval==(int)$oval)
                                       $attributes[$oid]=$oval;
                                   }
                                 }
-                                if (isset($HTTP_POST_VARS['id']) && is_array($HTTP_POST_VARS['id'])) {
-                                  foreach ($HTTP_POST_VARS['id'] as $key=>$val) {
+                                if (isset($_POST['id']) && is_array($_POST['id'])) {
+                                  foreach ($_POST['id'] as $key=>$val) {
                                     if (is_numeric($key) && $key==(int)$key && is_numeric($val) && $val==(int)$val)
-                                      $attributes=$attributes + $HTTP_POST_VARS['id'];
+                                      $attributes=$attributes + $_POST['id'];
                                   }
                                 }
-                                $cart->add_cart($HTTP_POST_VARS['products_id'], $cart->get_quantity(tep_get_uprid($HTTP_POST_VARS['products_id'], $attributes))+1, $attributes);
+                                $cart->add_cart($_POST['products_id'], $cart->get_quantity(tep_get_uprid($_POST['products_id'], $attributes))+1, $attributes);
 //++++ QT Pro: End Changed Code
                               }</textarea>
   <input type="checkbox" name="checkbox26" id="checkbox50" />
@@ -1298,7 +1298,7 @@ define('STOCK_LIST_IN_PI_TEXT_STOCK', 'Qty.');
     $products = $cart->get_products();
     for ($i=0, $n=sizeof($products); $i<$n; $i++) {
       if (tep_check_stock($products[$i]['id'], $products[$i]['quantity'])) {
-        tep_redirect(tep_href_link(FILENAME_SHOPPING_CART));
+        tep_redirect(tep_href_link('shopping_cart.php'));
         break;
       }
     }
@@ -1322,7 +1322,7 @@ define('STOCK_LIST_IN_PI_TEXT_STOCK', 'Qty.');
      if ($stock_check) $any_out_of_stock = 1;
   	}
     if ($any_out_of_stock == 1) {
-      tep_redirect(tep_href_link(FILENAME_SHOPPING_CART));
+      tep_redirect(tep_href_link('shopping_cart.php'));
       break;
     }
  	}
@@ -1460,7 +1460,7 @@ define('STOCK_LIST_IN_PI_TEXT_STOCK', 'Qty.');
 <p>Find:</p>
 
   <textarea name="textarea53" cols="120" rows="7" readonly="readonly" id="textarea66"><?php
-    $products_attributes_query = tep_db_query("select count(*) as total from " . TABLE_PRODUCTS_OPTIONS . " popt, " . TABLE_PRODUCTS_ATTRIBUTES . " patrib where patrib.products_id='" . (int)$HTTP_GET_VARS['products_id'] . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "'");
+    $products_attributes_query = tep_db_query("select count(*) as total from " . TABLE_PRODUCTS_OPTIONS . " popt, " . TABLE_PRODUCTS_ATTRIBUTES . " patrib where patrib.products_id='" . (int)$_GET['products_id'] . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "'");
     $products_attributes = tep_db_fetch_array($products_attributes_query);
     if ($products_attributes['total'] > 0) {
 ?>
@@ -1469,10 +1469,10 @@ define('STOCK_LIST_IN_PI_TEXT_STOCK', 'Qty.');
 
     <p>
 <?php
-      $products_options_name_query = tep_db_query("select distinct popt.products_options_id, popt.products_options_name from " . TABLE_PRODUCTS_OPTIONS . " popt, " . TABLE_PRODUCTS_ATTRIBUTES . " patrib where patrib.products_id='" . (int)$HTTP_GET_VARS['products_id'] . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "' order by popt.products_options_name");
+      $products_options_name_query = tep_db_query("select distinct popt.products_options_id, popt.products_options_name from " . TABLE_PRODUCTS_OPTIONS . " popt, " . TABLE_PRODUCTS_ATTRIBUTES . " patrib where patrib.products_id='" . (int)$_GET['products_id'] . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "' order by popt.products_options_name");
       while ($products_options_name = tep_db_fetch_array($products_options_name_query)) {
         $products_options_array = array();
-        $products_options_query = tep_db_query("select pov.products_options_values_id, pov.products_options_values_name, pa.options_values_price, pa.price_prefix from " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov where pa.products_id = '" . (int)$HTTP_GET_VARS['products_id'] . "' and pa.options_id = '" . (int)$products_options_name['products_options_id'] . "' and pa.options_values_id = pov.products_options_values_id and pov.language_id = '" . (int)$languages_id . "'");
+        $products_options_query = tep_db_query("select pov.products_options_values_id, pov.products_options_values_name, pa.options_values_price, pa.price_prefix from " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov where pa.products_id = '" . (int)$_GET['products_id'] . "' and pa.options_id = '" . (int)$products_options_name['products_options_id'] . "' and pa.options_values_id = pov.products_options_values_id and pov.language_id = '" . (int)$languages_id . "'");
         while ($products_options = tep_db_fetch_array($products_options_query)) {
           $products_options_array[] = array('id' => $products_options['products_options_values_id'], 'text' => $products_options['products_options_values_name']);
           if ($products_options['options_values_price'] != '0') {
@@ -1480,8 +1480,8 @@ define('STOCK_LIST_IN_PI_TEXT_STOCK', 'Qty.');
           }
         }
 
-        if (is_string($HTTP_GET_VARS['products_id']) && isset($cart->contents[$HTTP_GET_VARS['products_id']]['attributes'][$products_options_name['products_options_id']])) {
-          $selected_attribute = $cart->contents[$HTTP_GET_VARS['products_id']]['attributes'][$products_options_name['products_options_id']];
+        if (is_string($_GET['products_id']) && isset($cart->contents[$_GET['products_id']]['attributes'][$products_options_name['products_options_id']])) {
+          $selected_attribute = $cart->contents[$_GET['products_id']]['attributes'][$products_options_name['products_options_id']];
         } else {
           $selected_attribute = false;
         }
@@ -1499,24 +1499,42 @@ define('STOCK_LIST_IN_PI_TEXT_STOCK', 'Qty.');
 <p>Change to:</p>
 
   <textarea name="textarea54" cols="120" rows="7" readonly="readonly" id="textarea66">
-              <?php
-}
-//++++ QT Pro: End Changed Code
-    $products_attributes_query = tep_db_query("select count(*) as total from " . TABLE_PRODUCTS_OPTIONS . " popt, " . TABLE_PRODUCTS_ATTRIBUTES . " patrib where patrib.products_id='" . (int)$HTTP_GET_VARS['products_id'] . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "'");
+<?php
+/*    $products_attributes_query = tep_db_query("select count(*) as total from " . TABLE_PRODUCTS_OPTIONS . " popt, " . TABLE_PRODUCTS_ATTRIBUTES . " patrib where patrib.products_id='" . (int)$_GET['products_id'] . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "'");
     $products_attributes = tep_db_fetch_array($products_attributes_query);
     if ($products_attributes['total'] > 0) {
-//++++ QT Pro: Begin Changed code
-      $products_id=(preg_match("/^\d{1,10}(\{\d{1,10}\}\d{1,10})*$/",$HTTP_GET_VARS['products_id']) ? $HTTP_GET_VARS['products_id'] : (int)$HTTP_GET_VARS['products_id']); 
-      require(DIR_WS_CLASSES . 'pad_' . PRODINFO_ATTRIBUTE_PLUGIN . '.php');
-      $class = 'pad_' . PRODINFO_ATTRIBUTE_PLUGIN;
-      $pad = new $class($products_id);
-      echo $pad->draw();
+?>
+
+    <h4><?php echo TEXT_PRODUCT_OPTIONS; ?></h4>
+
+    <p>
+<?php
+      $products_options_name_query = tep_db_query("select distinct popt.products_options_id, popt.products_options_name from " . TABLE_PRODUCTS_OPTIONS . " popt, " . TABLE_PRODUCTS_ATTRIBUTES . " patrib where patrib.products_id='" . (int)$_GET['products_id'] . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "' order by popt.products_options_name");
+      while ($products_options_name = tep_db_fetch_array($products_options_name_query)) {
+        $products_options_array = array();
+        $products_options_query = tep_db_query("select pov.products_options_values_id, pov.products_options_values_name, pa.options_values_price, pa.price_prefix from " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov where pa.products_id = '" . (int)$_GET['products_id'] . "' and pa.options_id = '" . (int)$products_options_name['products_options_id'] . "' and pa.options_values_id = pov.products_options_values_id and pov.language_id = '" . (int)$languages_id . "'");
+        while ($products_options = tep_db_fetch_array($products_options_query)) {
+          $products_options_array[] = array('id' => $products_options['products_options_values_id'], 'text' => $products_options['products_options_values_name']);
+          if ($products_options['options_values_price'] != '0') {
+            $products_options_array[sizeof($products_options_array)-1]['text'] .= ' (' . $products_options['price_prefix'] . $currencies->display_price($products_options['options_values_price'], tep_get_tax_rate($product_info['products_tax_class_id'])) .') ';
+          }
+        }
+
+        if (is_string($_GET['products_id']) && isset($cart->contents[$_GET['products_id']]['attributes'][$products_options_name['products_options_id']])) {
+          $selected_attribute = $cart->contents[$_GET['products_id']]['attributes'][$products_options_name['products_options_id']];
+        } else {
+          $selected_attribute = false;
+        }
+?>
+      <strong><?php echo $products_options_name['products_options_name'] . ':'; ?></strong><br /><?php echo tep_draw_pull_down_menu('id[' . $products_options_name['products_options_id'] . ']', $products_options_array, $selected_attribute, 'style="width: 200px;"'); ?><br />
+<?php
+      }
+?>
+    </p>
+
+<?php
     }
-
-//Display a table with which attributecombinations is on stock to the customer?
-if(PRODINFO_ATTRIBUTE_DISPLAY_STOCK_LIST == 'True'): require(DIR_WS_MODULES . "qtpro_stock_table.php"); endif;
-
-//++++ QT Pro: End Changed Code
+*/	
 ?>
 </textarea>
   <input type="checkbox" name="checkbox36" id="checkbox66" />
