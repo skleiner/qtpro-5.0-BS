@@ -33,13 +33,28 @@ To do list:
 
 It would be great if there appear testers for the mods.
 
+Beta 02 installation
+
 Who has the old version already installed:
 
 - replace the admin files
 
 - upload and install the product info content modules and (IMPORTANT!) uncomment the complete options/attributes section in product_info.php
-
+- upload all other files included in the "new files" directory
 - replace all pad class files
+- undo all modifications of the old version in:
+   - includes/classes/orders.php
+   - includes/functions/general.php
+   - checkout_payment.php
+   - checkout_confirmation.php
+   - checkout_process.php
+   
+   use the files included in: "Modified files for 2.3.4 BS" or compare and apply the changes. (hook registry and hook calls)
+   
+   - keep the modifications in includes/application_top.php
+   - keep the modifications in shopping_cart.php or use the included content module "product listing qtpro" instead of "product listing" for the modularized shopping cart.
+   If you do not have the latest EDGE version with hooks support:
+   Use the included application_top.php and copy: legacy/includes/classes/hooks.php
 
 For new installations:
 
@@ -47,13 +62,22 @@ For new installations:
 
 follow the old instructions except
 
-A.: don't modify  admin/includes/boxes/tools.php and reports.php, upload the nwe files instead
+A.: don't modify  admin/includes/boxes/tools.php and reports.php, upload the new files instead
 
 B.: upload and install the product info content modules and (IMPORTANT!) uncomment the complete options/attributes section in product_info.php instead to apply the mods
 
-Most important for now are the changes in the product info option modules to show final prices according to the option selection even if there are muliple option combinations (single drop down and single radios)
+C.: apply only the modification to: 
+    - includes/application_top.php
+    - shopping_cart.php if not modularized or use the included content module "product listing qtpro" instead of "product listing" for the modularized shopping cart.
 
- 
+   use the files included in: "Modified files for 2.3.4 BS" or compare and apply the changes. (hook registry and hook calls)
+   - checkout_payment.php
+   - checkout_confirmation.php
+   - checkout_process.php
+
+   If you do not have the latest EDGE version with hooks support:
+   Use the included application_top.php and copy: legacy/includes/classes/hooks.php   
+
 
 Thanks and best regards
 
