@@ -46,8 +46,15 @@
   Released under the GNU General Public License
 */
 
-    require('includes/application_top.php');
-   require('includes/template_top.php');
+  require('includes/application_top.php');
+
+	$product_investigation = (isset($HTTP_GET_VARS['pID']))? qtpro_doctor_investigate_product($HTTP_GET_VARS['pID']) : null;
+	$qtpro_sick_count = qtpro_sick_product_count();
+	if ($qtpro_sick_count != 0) {
+	  $messageStack->add(sprintf(constant('MODULE_CONTENT_QTPRO_ADMIN_WARNING_' . strtoupper($language)), $qtpro_sick_count, tep_href_link('qtprodoctor.php')), 'error');
+  }
+
+  require('includes/template_top.php');
    
   require('includes/classes/currencies.php');
   $currencies = new currencies();

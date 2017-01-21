@@ -73,6 +73,21 @@
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Prevent Adding Out of Stock to Cart', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_NO_ADD_OUT_OF_STOCK', 'True', 'If True: Customer will not be able to ad a product with an out of stock attribute combination to the cart. A javascript form will be displayed.', '6', '0', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Use Actual Price Pull Downs', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN', 'False', 'NOTE: If you have more than one option per product, this can only be used with a satisfying result with single_dropdown or single_radioset.<br>If True: Option prices will displayed as a final product price.<br>Default is false.</strong>', '6', '0', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
+      include_once('includes/classes/language.php');
+      $lng = new language;
+      while (list($id, $value) = each($lng->catalog_languages)) {
+      	$key = strtoupper($value['directory']);
+        switch ($key) {
+        	case 'ESPANOL':        
+        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Warnning " . $key . "', 'MODULE_CONTENT_QTPRO_ADMIN_WARNING_" . $key . "', 'Warning: There are %s sick products in the database. Please visit <a href=\"%s\" class=\"headerLink\">the QTPro doctor</a>', 'Definición de idioma usado en admin QT Pro Stock Warning', '6', '13', now())");
+       		break;
+        	case 'GERMAN':        
+        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Warnning " . $key . "', 'MODULE_CONTENT_QTPRO_ADMIN_WARNING_" . $key . "', 'Warning: There are %s sick products in the database. Please visit <a href=\"%s\" class=\"headerLink\">the QTPro doctor</a>', 'Definición de idioma usado en admin QT Pro Stock Warning', '6', '13', now())");
+            break;
+        	default:        
+        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Warnning " . $key . "', 'MODULE_CONTENT_QTPRO_ADMIN_WARNING_" . $key . "', 'Warning: There are %s sick products in the database. Please visit <a href=\"%s\" class=\"headerLink\">the QTPro doctor</a>', 'Definición de idioma usado en admin QT Pro Stock Warning', '6', '13', now())");
+        }
+      }
 
       // Add new column to products_options to indicate if stock should be tracked for an option
       if (tep_db_num_rows(tep_db_query("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='". DB_DATABASE . "' AND TABLE_NAME='products_options' AND COLUMN_NAME LIKE 'products_options_track_stock'")) != 1 ) {
@@ -101,16 +116,25 @@
     }
 
     function keys() {
-      return array('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_STATUS', 
-                   'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_CONTENT_WIDTH', 
-                   'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_REMOVE_DATA', 
-                   'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_PLUGIN', 
-                   'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_SHOW_OUT_OF_STOCK', 
-                   'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_MARK_OUT_OF_STOCK', 
-                   'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_OUT_OF_STOCK_MSGLINE', 
-                   'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_NO_ADD_OUT_OF_STOCK', 
-                   'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN', 
-                   'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_SORT_ORDER');
+      include_once('includes/classes/language.php');
+      $lng = new language;
+      define('MODULE_CONTENT_QTPRO_ADMIN_WARNING_', '');
+      $KeysArray =  array('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_STATUS', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_CONTENT_WIDTH', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_REMOVE_DATA', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_PLUGIN', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_SHOW_OUT_OF_STOCK', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_MARK_OUT_OF_STOCK', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_OUT_OF_STOCK_MSGLINE', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_NO_ADD_OUT_OF_STOCK', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_SORT_ORDER');
+      
+      while (list($id, $value) = each($lng->catalog_languages)) {
+      	$key = strtoupper($value['directory']);
+      	array_push($KeysArray, MODULE_CONTENT_QTPRO_ADMIN_WARNING_ . $key);
+      }
+      return $KeysArray;
     }
-  }
-  
+
+  } // end class

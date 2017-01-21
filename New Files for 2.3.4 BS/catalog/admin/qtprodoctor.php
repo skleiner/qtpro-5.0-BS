@@ -1,11 +1,17 @@
 <?php
 /*
-  $Id: server_info.php 1785 2008-01-10 15:07:07Z hpdl $
-
+  $Id: qtprodoctor.php
+  $Loc: catalog/admin/
+      
+  2017 QTPro 5.0 BS
+  by @raiwa 
+  info@oscaddons.com
+  www.oscaddons.com
+  
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
-  Copyright (c) 2008 osCommerce
+  Copyright (c) 2010 osCommerce
 
   Released under the GNU General Public License
 */
@@ -30,7 +36,7 @@
         <td><table border="0" width="100%" cellspacing="0" cellpadding="0">
           <tr>
             <td class="pageHeading">
-            <?php echo 'QTPro Doctor'; ?>
+            <?php echo HEADING_TITLE; ?>
             </td>
             <td class="pageHeading" align="right"><?php echo tep_draw_separator('pixel_trans.gif', HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT); ?></td>
           </tr>
@@ -42,32 +48,32 @@
 		<?php 
 			switch($doctor_action){
 				case 'examine':
-					if(qtpro_doctor_product_healthy($products_id)){
-						print '<span style="font-family: Verdana, Arial, sans-serif; font-size: 10px; color: green; font-weight: normal; text-decoration: none;"><b>Product is healthy</b><br /> The database entries for this products stock as they should.</span>';
-					}else{
-						print '<span style="font-family: Verdana, Arial, sans-serif; font-size: 10px; color: red; font-weight: normal; text-decoration: none;"><b>Product is sick</b><br /> The database entries for this products stock is messed up. This is why the table above looks messed up.</span>';
+					if (qtpro_doctor_product_healthy($products_id)) {
+						print TEXT_EXAMINE_HEALTHY;
+					} else {
+						print TEXT_EXAMINE_MESSED;
 					}
 				break;
 				case 'amputate':
-					print qtpro_doctor_amputate_bad_from_product($products_id).' database entries where amputated';
+					print sprintf(TEXT_AMPUTATE, qtpro_doctor_amputate_bad_from_product($products_id));
 					qtpro_update_summary_stock($products_id);
 				break;
 				case 'chuck_trash':
-					print qtpro_chuck_trash().' database entries where identified as trash and deleted.';
+					print sprintf(TEXT_CHUCK_TRASH, qtpro_chuck_trash());
 				break;
 				case 'update_summary':
 					qtpro_update_summary_stock($products_id);
-					print 'The summary stock for the product was updated.';
+					print TEXT_UPDATE_SUMMARY;
 				break;
 				
 				
 				
 				default:
-					print "<h1 class=\"pageHeading\">QTPro Doctor - Overview</h1>";
-					print "You currently have <b>". qtpro_normal_product_count()."</b> products in your store.<br>";
-					print "<b>".qtpro_tracked_product_count()."</b> of them have options with tracked stock.<br>";
-					print "In the database we currently have <b>". qtpro_number_of_trash_stock_rows() . "</b> trash rows.";
-					//print "<b>".qtpro_sick_product_count()."</b> of the producks with tracked stock is sick.<br><br>";
+					print '<h1 class="pageHeading">' . PAGE_HEADING . '</h1>';
+					print sprintf(TEXT_PRODUCT_COUNT, qtpro_normal_product_count());
+					print sprintf(TEXT_PRODUCT_TRACKED_STOCK, qtpro_tracked_product_count());
+					print sprintf(TEXT_PRODUCT_TRASH_ROWS, qtpro_number_of_trash_stock_rows());
+					print sprintf(TEXT_PRODUCT_SICK, qtpro_sick_product_count());
 					qtpro_doctor_formulate_database_investigation();
 
 					

@@ -56,7 +56,7 @@
   $order = new order;
 
 // QTPro    
-  $OSCOM_Hooks->call('qtpro', 'StockCheckConfirmation');
+  $OSCOM_Hooks->call('qtpro', 'StockCheckProcess');
   
 // Stock Check
   $any_out_of_stock = false;
