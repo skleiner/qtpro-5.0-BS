@@ -21,15 +21,20 @@ To do list:
   language constants/definitions
 - replace mods in admin/boxes/tools.php by separate file
 - replace mods in admin/boxes/reports.php by separate file
-- avoid mods in admin/includes/functions/general.php
-  load function file in module?
-  replace core function mods by own functions?
+- avoid mods in admin/includes/functions/general.php => not possible
+  load function file in modules=> not possible
+  replace core function mods by own functions? => not possible
 - modularize product info options
 - modularize product info stock table
+- Integrate database changes in product info module
 - versions for Modular Product Page by kymation
 - alternative product listing module for modularized shopping cart
 - order class extension to avoid mods in core order class
 - replace all mods in checkout files by hooks?
+- Move stock checks in checkout_payment.php and checkout_confirmation.php to ht module
+- check compatibility with ajax attribute manager
+- add support for attribute sort order
+- update instructions
 
 It would be great if there appear testers for the mods.
 
