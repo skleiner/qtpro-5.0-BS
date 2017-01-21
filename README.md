@@ -11,7 +11,7 @@ Planned Changes:
 
 To do list:
 - update qtprodoctor.php
-  hardcoded stuff, superglobals
+  <strike>hardcoded stuff, superglobals</strike>
   language constants/definitions
 - update stats_low_stock_attrib.php
   hardcoded stuff, superglobals
