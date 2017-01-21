@@ -10,4 +10,4 @@
   Released under the GNU General Public License
 */
 
-  define('MODULES_ADMIN_MENU_REPORTS_STATS_LOW_STOCK_ATTRIB', 'Stock Report');
+  define('MODULES_ADMIN_MENU_REPORTS_STATS_LOW_STOCK_ATTRIB', 'Informe de Stock');
