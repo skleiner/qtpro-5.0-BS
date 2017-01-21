@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_TITLE', 'Product Listing QTPro');
-  define('MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_DESCRIPTION', 'Show product listing QTPro on shopping cart page');
+  define('MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_TITLE', 'QTPro, Lista de productos.');
+  define('MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_DESCRIPTION', 'Mostrar lista de prductos (QTpro) en la página de la cesta de compra.');
   
