@@ -18,31 +18,7 @@
 
 class hook_shop_qtpro_qtpro_hooks {
 
-  function listen_StockCheckPayment() {
-    global $cart;
-
-    require('includes/classes/order_qtpro.php');
-    $order = new order_qtpro;
-
-    if ( (STOCK_CHECK == 'true') && (STOCK_ALLOW_CHECKOUT != 'true') ) {
-      $products = $cart->get_products();
-      $any_out_of_stock = 0;
-      for ($i=0, $n=sizeof($products); $i<$n; $i++) {
-        if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
-          $stock_check = $this->check_stock_qtpro($products[$i]['id'], $products[$i]['quantity'], $products[$i]['attributes']);
-        } else {
-          $stock_check = $this->check_stock_qtpro($products[$i]['id'], $products[$i]['quantity']);
-        }
-        if ($stock_check) $any_out_of_stock = 1;
-      }
-      if ($any_out_of_stock == 1) {
-        tep_redirect(tep_href_link('shopping_cart.php'));
-        break;
-      }
-    }
-  }
-
-  function listen_StockCheckConfirmation() {
+  function listen_StockCheckProcess() {
     global $order;
     
     require('includes/classes/order_qtpro.php');
@@ -144,13 +120,13 @@ class hook_shop_qtpro_qtpro_hooks {
 
 ////
 // Check if the required stock is available
-// If insufficent stock is available return an out of stock message
+// If insufficent stock is available return $out_of_stock = true
   function check_stock_qtpro($products_id, $products_quantity, $attributes=array()) {
     $stock_left = $this->get_products_stock_qtpro($products_id, $attributes) - $products_quantity;
     $out_of_stock = '';
 
     if ($stock_left < 0) {
-      $out_of_stock = '<span class="text-danger"><b>' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</b></span>';
+        $out_of_stock = true;
     }
 
     return $out_of_stock;
