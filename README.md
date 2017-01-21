@@ -13,12 +13,12 @@ To do list:
 - update qtprodoctor.php
   <strike>hardcoded stuff, superglobals</strike>
   language constants/definitions
-- update stats_low_stock_attrib.php
+- <strike>update stats_low_stock_attrib.php
   hardcoded stuff, superglobals
-  language constants/definitions
-- update stock.php
+  language constants/definitions</strike>
+- <strike>update stock.php
   hardcoded stuff, superglobals
-  language constants/definitions
+  language constants/definitions</strike>
 - replace mods in admin/boxes/tools.php by separate file
 - replace mods in admin/boxes/reports.php by separate file
 - avoid mods in admin/includes/functions/general.php => not possible
