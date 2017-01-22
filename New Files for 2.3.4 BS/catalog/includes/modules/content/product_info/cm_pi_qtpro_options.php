@@ -79,13 +79,16 @@
       	$key = strtoupper($value['directory']);
         switch ($key) {
         	case 'ESPANOL':        
-        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Warnning " . $key . "', 'MODULE_CONTENT_QTPRO_ADMIN_WARNING_" . $key . "', 'Warning: There are %s sick products in the database. Please visit <a href=\"%s\" class=\"headerLink\">the QTPro doctor</a>', 'Definición de idioma usado en admin QT Pro Stock Warning', '6', '13', now())");
+        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Aviso Admin Stock " . $key . "', 'MODULE_CONTENT_QTPRO_ADMIN_WARNING_" . $key . "', 'Atención: Hay %s productos enfermos en la base de datos. Por favor, visite <a href=\"%s\" class=\"headerLink\">el QTPro doctor</a>', 'Definición de idioma usado en admin QT Pro Stock Warning', '6', '13', now())");
+        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Botón Admin Stock " . $key . "', 'MODULE_CONTENT_QTPRO_STOCK_BUTTON_" . $key . "', 'Stock', 'Definición de idioma usado en el admin botón QT Pro Stock', '6', '13', now())");
        		break;
         	case 'GERMAN':        
-        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Warnning " . $key . "', 'MODULE_CONTENT_QTPRO_ADMIN_WARNING_" . $key . "', 'Warning: There are %s sick products in the database. Please visit <a href=\"%s\" class=\"headerLink\">the QTPro doctor</a>', 'Definición de idioma usado en admin QT Pro Stock Warning', '6', '13', now())");
+        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Warnung " . $key . "', 'MODULE_CONTENT_QTPRO_ADMIN_WARNING_" . $key . "', 'Warnung: Es gibt %s kranke Produkte in der Datenbank. Bitte gehen Sie zum <a href=\"%s\" class=\"headerLink\">QTPro doctor</a>', 'Sprachdefinition für die Admin QT Pro Lagerbestand Warnung', '6', '13', now())");
+        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Button " . $key . "', 'MODULE_CONTENT_QTPRO_STOCK_BUTTON_" . $key . "', 'Lagerbestand', 'Sprachdefinition für den Admin QT Pro Lagerbestand Button', '6', '13', now())");
             break;
         	default:        
-        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Warnning " . $key . "', 'MODULE_CONTENT_QTPRO_ADMIN_WARNING_" . $key . "', 'Warning: There are %s sick products in the database. Please visit <a href=\"%s\" class=\"headerLink\">the QTPro doctor</a>', 'Definición de idioma usado en admin QT Pro Stock Warning', '6', '13', now())");
+        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Warning " . $key . "', 'MODULE_CONTENT_QTPRO_ADMIN_WARNING_" . $key . "', 'Warning: There are %s sick products in the database. Please visit <a href=\"%s\" class=\"headerLink\">the QTPro doctor</a>', 'Language definition used in admin QT Pro Stock Warning', '6', '13', now())");
+        		tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Admin Stock Button " . $key . "', 'MODULE_CONTENT_QTPRO_STOCK_BUTTON_" . $key . "', 'Stock', 'Language definition used in admin QT Pro Stock Button', '6', '13', now())");
         }
       }
 
@@ -118,7 +121,6 @@
     function keys() {
       include_once('includes/classes/language.php');
       $lng = new language;
-      define('MODULE_CONTENT_QTPRO_ADMIN_WARNING_', '');
       $KeysArray =  array('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_STATUS', 
                           'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_CONTENT_WIDTH', 
                           'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_REMOVE_DATA', 
@@ -133,6 +135,7 @@
       while (list($id, $value) = each($lng->catalog_languages)) {
       	$key = strtoupper($value['directory']);
       	array_push($KeysArray, MODULE_CONTENT_QTPRO_ADMIN_WARNING_ . $key);
+      	array_push($KeysArray, MODULE_CONTENT_QTPRO_STOCK_BUTTON_ . $key);
       }
       return $KeysArray;
     }
