@@ -265,7 +265,7 @@
 <?php
 //++++ QT Pro: Begin Changed code
 ?>
-                <td class="dataTableHeadingContent"> <?php echo TABLE_HEADING_TRACK_STOCK; ?> </td>
+                <td class="dataTableHeadingContent"> <?php echo constant('MODULE_CONTENT_QTPRO_TRACK_STOCK_' . strtoupper($language)); ?> </td>
 <?php
 //++++ QT Pro: End Changed Code
 ?>
@@ -317,7 +317,7 @@
 <?php
 //++++ QT Pro: Begin Changed code
 ?>
-                <td align="center" class="smallText"> <?php echo $options_values['products_options_track_stock']?"Yes":"No"; ?></td>
+                <td align="center" class="smallText"> <?php echo $options_values['products_options_track_stock']? tep_image('images/icons/' . 'tick.gif', ICON_TICK): tep_image('images/icons/' . 'cross.gif', ICON_CROSS); ?></td>
 <?php
 //++++ QT Pro: End Changed Code
 ?>
