@@ -37,9 +37,17 @@
       
       $content_width = (int)MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_CONTENT_WIDTH;
 
-      $products_attributes_query = tep_db_query("select count(*) as total from products_options popt, products_attributes patrib where patrib.products_id='" . (int)$_GET['products_id'] . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "'");
-      $products_attributes = tep_db_fetch_array($products_attributes_query);
-      if ($products_attributes['total'] > 0) {
+      $product_exists = false;
+      if (method_exists('product_info','product_exists') && isset($product_info) && $product_info->product_exists() === true && $product_info->has_options() === true ) {
+        $product_exists = true;
+      } else {
+        $products_attributes_query = tep_db_query("select count(*) as total from products_options popt, products_attributes patrib where patrib.products_id='" . (int)$_GET['products_id'] . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "'");
+        $products_attributes = tep_db_fetch_array($products_attributes_query);
+        if ($products_attributes['total'] > 0) 
+          $product_exists = true;          
+      }
+
+      if ($product_exists === true) {
         $products_id=(preg_match("/^\d{1,10}(\{\d{1,10}\}\d{1,10})*$/", $_GET['products_id']) ? $_GET['products_id'] : (int)$_GET['products_id']); 
         require('includes/classes/pad_' . MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_PLUGIN . '.php');
         $class = 'pad_' . MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_PLUGIN;
