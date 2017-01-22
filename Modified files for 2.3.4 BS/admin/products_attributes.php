@@ -20,6 +20,8 @@
   //++++ QT Pro: End added code 
   
   $languages = tep_get_languages();
+  
+  $products_attributes_filename = null;
 
   $action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
 
@@ -218,7 +220,7 @@
                     <td colspan="3" class="main"><br><?php echo TEXT_WARNING_OF_DELETE; ?></td>
                   </tr>
                   <tr>
-                    <td align="right" colspan="3" class="main"><br><?php echo '<a href="' . tep_href_link('products_attributes.php', $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_cancel.gif', ' cancel '); ?></a> </td>
+                    <td align="right" colspan="3" class="smallText"><br /><?php echo tep_draw_button(IMAGE_BACK, 'triangle-1-w', tep_href_link('products_attributes.php', $page_info)); ?>&nbsp;</td>
                   </tr>
 <?php
     } else {
@@ -227,7 +229,7 @@
                     <td class="main" colspan="3"><br><?php echo TEXT_OK_TO_DELETE; ?></td>
                   </tr>
                   <tr>
-                    <td class="main" align="right" colspan="3"><br><?php echo '<a href="' . tep_href_link('products_attributes.php', 'action=delete_option&option_id=' . $HTTP_GET_VARS['option_id'] . '&' . $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_delete.gif', ' delete '); ?></a>   <?php echo '<a href="' . tep_href_link('products_attributes.php', $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_cancel.gif', ' cancel '); ?></a> </td>
+                    <td class="smallText" align="right" colspan="3"><br /><?php echo tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link('products_attributes.php', 'action=delete_option&option_id=' . $HTTP_GET_VARS['option_id'] . '&' . $page_info), 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link('products_attributes.php', $page_info)); ?>&nbsp;</td>
                   </tr>
 <?php
     }
@@ -307,7 +309,7 @@
 <?php
 //++++ QT Pro: End Changed Code
 ?>
-                <td align="center" class="smallText"> <?php echo tep_image_submit('button_update.gif', IMAGE_UPDATE); ?> <?php echo '<a href="' . tep_href_link('products_attributes.php', $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_cancel.gif', IMAGE_CANCEL); ?></a> </td>
+                <td align="center" class="smallText">&nbsp;<?php echo tep_draw_button(IMAGE_SAVE, 'disk', null, 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link('products_attributes.php', $page_info)); ?>&nbsp;</td>
 <?php
         echo '</form>' . "\n";
       } else {
@@ -321,7 +323,7 @@
 <?php
 //++++ QT Pro: End Changed Code
 ?>
-                <td align="center" class="smallText"> <?php echo '<a href="' . tep_href_link('products_attributes.php', 'action=update_option&option_id=' . $options_values['products_options_id'] . '&' . $page_info, 'NONSSL') . '">'; ?><?php echo tep_image_button('button_edit.gif', IMAGE_UPDATE); ?></a>  <?php echo '<a href="' . tep_href_link('products_attributes.php', 'action=delete_product_option&option_id=' . $options_values['products_options_id'] . '&' . $page_info, 'NONSSL') , '">'; ?><?php echo tep_image_button('button_delete.gif', IMAGE_DELETE); ?></a> </td>
+                <td align="center" class="smallText">&nbsp;<?php echo tep_draw_button(IMAGE_EDIT, 'document', tep_href_link('products_attributes.php', 'action=update_option&option_id=' . $options_values['products_options_id'] . '&' . $page_info)) . tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link('products_attributes.php', 'action=delete_product_option&option_id=' . $options_values['products_options_id'] . '&' . $page_info)); ?>&nbsp;</td>
 <?php
       }
 ?>
@@ -358,7 +360,7 @@
 //++++ QT Pro: Begin Changed code
 ?>
                 <td align="center" ><input type=checkbox name=track_stock></td>
-                <td align="left" class="smallText"> <?php echo tep_image_submit('button_insert.gif', IMAGE_INSERT); ?> </td>
+                <td align="center" class="smallText">&nbsp;<?php echo tep_draw_button(IMAGE_INSERT, 'plus'); ?>&nbsp;</td>
 <?php
 //++++ QT Pro: End Changed Code
       echo '</form>';
