@@ -34,14 +34,21 @@ To do list:
 - <strike>Move stock checks in checkout_payment.php and checkout_confirmation.php to ht module</strike>
 - add <strike>spanish</strike> and german translations
 - Add installation checks to all modules
-- Merge standard and modular product info product listing module by kymation into one universal module
+- <strike>Merge standard and modular product info product listing module by kymation into one universal module</strike>
 - check compatibility with ajax attribute manager
 - add support for attribute sort order
 - update instructions
 
 It would be great if there appear testers for the mods.
 
-Beta 04 installation
+Beta 05 installation
+
+Beta 05 changes:
+- all language definitions revised and added to product info module the definitions for modified core files (admin/categories, admin/product_attributes)
+- fixed bug for duplicate listing in admin/stock.php
+- merged support for modular product info by kymation into base module
+- fix class constructor name in header tag and pad base
+- moved stock check functions to pad base (no need to modify in /functions/general.php any more)
 
 Who has the old version already installed:
 
