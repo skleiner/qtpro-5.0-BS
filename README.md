@@ -45,7 +45,7 @@ Beta 05 installation
 
 Beta 05 changes:
 - all language definitions revised and added to product info module the definitions for modified core files (admin/categories, admin/product_attributes)
-- fixed bug for duplicate listing in admin/stock.php
+- fixed bug for duplicate listing in admin/stock.php under PHP7
 - merged support for modular product info by kymation into base module
 - fix class constructor name in header tag and pad base
 - moved stock check functions to pad base (no need to modify in /functions/general.php any more)
