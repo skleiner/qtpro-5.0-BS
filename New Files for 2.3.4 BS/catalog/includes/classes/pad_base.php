@@ -79,7 +79,7 @@
     Returns:
       nothing
 */
-    function pad_base($products_id=0) {
+    function __construct($products_id=0) {
       $this->products_id = $products_id;
       if ($this->products_id != 0) {
         $tax_class_query = tep_db_query("SELECT p.products_tax_class_id, IF(s.status, s.specials_new_products_price, p.products_price) as products_price FROM products p left join specials s on p.products_id = s.products_id WHERE p.products_id = '" . (int)$products_id . "'");
@@ -355,7 +355,7 @@
           $this->_build_attributes_combinations($attributes, $showoos, $markoos, $combinations, $selected_combination, $oidindex+1, $newcomb, $newid, $newtext, $newisselected, $newprice);
         } else {
           $is_out_of_stock = $this->check_stock_qtpro(tep_get_prid($this->products_id),1,$newcomb);
-          if ( !$is_out_of_stock | ($showoos == true) ) {
+          if ( !$is_out_of_stock || ($showoos == true) ) {
             if(MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN == 'True') {
               $combprice = ' ' . $currencies->display_price( $newprice + $this->products_original_price, tep_get_tax_rate($this->products_tax_class_id));
             } else {
@@ -425,24 +425,24 @@
       
       return $out;
     }
-
-////
-// Check if the required stock is available
-// If insufficent stock is available return an out of stock message
+    
+    ////
+    // Check if the required stock is available
+    // If insufficent stock is available return $out_of_stock = true
     function check_stock_qtpro($products_id, $products_quantity, $attributes=array()) {
       $stock_left = $this->get_products_stock_qtpro($products_id, $attributes) - $products_quantity;
       $out_of_stock = '';
 
       if ($stock_left < 0) {
-        $out_of_stock = '<span class="text-danger"><b>' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</b></span>';
+        $out_of_stock = true;
       }
 
       return $out_of_stock;
     }
   
-  ////
-// Return a product's stock
-// TABLES: products, products_stock
+    ////
+    // Return a product's stock
+    // TABLES: products. products_stock
     function get_products_stock_qtpro($products_id, $attributes=array()) {
       global $languages_id;
       $products_id = tep_get_prid($products_id);
@@ -473,6 +473,6 @@
       }
       return $quantity;
     }
-
-  }
+  
+  } // end class
 ?>
