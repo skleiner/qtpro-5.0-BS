@@ -27,18 +27,18 @@
   
   
 */
-define('HEADING_TITLE','Products stock');
+define('HEADING_TITLE','Stock de productos');
 
-define('TABLE_HEADING_QUANTITY','Quantity');
+define('TABLE_HEADING_QUANTITY','Cantidad');
 define('TABLE_HEADING_QTPO_DOCTOR','QTPro Doctor');
 define('TABLE_HEADING_LINKS','Links');
-define('TEXT_LINK_EDIT_PRODUCT','Edit this product');
-define('TEXT_LINK_LOW_STOCK_REPORT','Go to the low stock report');
-define('TEXT_LINK_GO_TO_PRODUCT','Go to this product in: ');
-define('WARNING_NO_PRODUCT','Warning! This product does not seem to exist in any category. Your customers can\'t find it.');
+define('TEXT_LINK_EDIT_PRODUCT','Editar producto');
+define('TEXT_LINK_LOW_STOCK_REPORT','Ir al informe de stock');
+define('TEXT_LINK_GO_TO_PRODUCT','Ir a este producto en: ');
+define('WARNING_NO_PRODUCT','Atención! Este producto no parece existir en ninguna categoría. Sus clientes no lo encontrarán.');
  
-define('BUTTON_ADD','Add');
-define('BUTTON_UPDATE','Update');
+define('BUTTON_ADD','Añadir');
+define('BUTTON_UPDATE','Actualizar');
 
 
 ?>
