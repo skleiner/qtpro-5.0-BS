@@ -21,7 +21,7 @@
     var $sort_order;
     var $enabled = false;
 
-    function ht_qtpro_stock_check() {
+    function __construct() {
       $this->title = MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_TITLE;
       $this->description = MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_DESCRIPTION;
 
@@ -52,7 +52,6 @@
           }
           if ($any_out_of_stock == 1) {
             tep_redirect(tep_href_link('shopping_cart.php'));
-            break;
           }
         }
       } elseif (basename($PHP_SELF) == 'checkout_confirmation.php') {
