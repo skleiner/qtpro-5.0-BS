@@ -10,6 +10,6 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_TITLE', 'QT Pro Stock Check');
-  define('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_DESCRIPTION', 'Add the QT Pro stock check to checkout pages');
+  define('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_TITLE', 'QTpro Comprobar Stock');
+  define('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_DESCRIPTION', 'Añadir comprobar Stock (QTpro) en la página de confirmación.');
   
