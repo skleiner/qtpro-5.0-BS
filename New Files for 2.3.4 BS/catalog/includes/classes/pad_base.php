@@ -354,7 +354,7 @@
         if (isset($attributes[$oidindex+1])) {
           $this->_build_attributes_combinations($attributes, $showoos, $markoos, $combinations, $selected_combination, $oidindex+1, $newcomb, $newid, $newtext, $newisselected, $newprice);
         } else {
-          $is_out_of_stock = tep_check_stock(tep_get_prid($this->products_id),1,$newcomb);
+          $is_out_of_stock = $this->check_stock_qtpro(tep_get_prid($this->products_id),1,$newcomb);
           if ( !$is_out_of_stock | ($showoos == true) ) {
             if(MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN == 'True') {
               $combprice = ' ' . $currencies->display_price( $newprice + $this->products_original_price, tep_get_tax_rate($this->products_tax_class_id));
@@ -424,6 +424,54 @@
       $out .= str_repeat('}',sizeof($opts));
       
       return $out;
+    }
+
+////
+// Check if the required stock is available
+// If insufficent stock is available return an out of stock message
+    function check_stock_qtpro($products_id, $products_quantity, $attributes=array()) {
+      $stock_left = $this->get_products_stock_qtpro($products_id, $attributes) - $products_quantity;
+      $out_of_stock = '';
+
+      if ($stock_left < 0) {
+        $out_of_stock = '<span class="text-danger"><b>' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</b></span>';
+      }
+
+      return $out_of_stock;
+    }
+  
+  ////
+// Return a product's stock
+// TABLES: products, products_stock
+    function get_products_stock_qtpro($products_id, $attributes=array()) {
+      global $languages_id;
+      $products_id = tep_get_prid($products_id);
+      $all_nonstocked = true;
+      if (sizeof($attributes)>0) {
+        $attr_list='';
+        $options_list=implode(",",array_keys($attributes));
+        $track_stock_query=tep_db_query("select products_options_id, products_options_track_stock from products_options where products_options_id in ($options_list) and language_id= '" . (int)$languages_id . "order by products_options_id'");
+        while($track_stock_array=tep_db_fetch_array($track_stock_query)) {
+          if ($track_stock_array['products_options_track_stock']) {
+            $attr_list.=$track_stock_array['products_options_id'] . '-' . $attributes[$track_stock_array['products_options_id']] . ',';
+            $all_nonstocked=false;
+          }
+        }
+        $attr_list=substr($attr_list,0,strlen($attr_list)-1);
+      }
+    
+      if ((sizeof($attributes)==0) | ($all_nonstocked)) {
+        $stock_query = tep_db_query("select products_quantity as quantity from products where products_id = '" . (int)$products_id . "'");
+      } else {
+        $stock_query=tep_db_query("select products_stock_quantity as quantity from products_stock where products_id='". (int)$products_id . "' and products_stock_attributes='$attr_list'");
+      }
+      if (tep_db_num_rows($stock_query)>0) {
+        $stock=tep_db_fetch_array($stock_query);
+        $quantity=$stock['quantity'];
+      } else {
+        $quantity = 0;
+      }
+      return $quantity;
     }
 
   }
