@@ -142,9 +142,8 @@
     }
 
     function install() {
-      tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable GTIN Module', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_STATUS', 'True', 'Should this module be shown on the product info page?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+      tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Enable QT Pro Stock Table Module', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_STATUS', 'True', 'Should this module be shown on the product info page?', '6', '1', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Content Width', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_CONTENT_WIDTH', '6', 'What width container should the content be shown in?', '6', '1', 'tep_cfg_select_option(array(\'12\', \'11\', \'10\', \'9\', \'8\', \'7\', \'6\', \'5\', \'4\', \'3\', \'2\', \'1\'), ', now())");
-      tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Length of GTIN', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_LENGTH', '13', 'Length of GTIN. 14 (Industry Standard), 13 (eg ISBN codes and EAN UCC-13), 12 (UPC), 8 (EAN UCC-8)', '6', '0', 'tep_cfg_select_option(array(\'14\', \'13\', \'12\', \'8\'), ', now())");
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added) values ('Sort Order', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_SORT_ORDER', '0', 'Sort order of display. Lowest is displayed first.', '6', '0', now())");
     }
 
@@ -153,7 +152,7 @@
     }
 
     function keys() {
-      return array('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_STATUS', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_CONTENT_WIDTH', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_LENGTH', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_SORT_ORDER');
+      return array('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_STATUS', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_CONTENT_WIDTH', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_SORT_ORDER');
     }
   }
   

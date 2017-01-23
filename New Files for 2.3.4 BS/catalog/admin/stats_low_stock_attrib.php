@@ -46,8 +46,15 @@
   Released under the GNU General Public License
 */
 
-    require('includes/application_top.php');
-   require('includes/template_top.php');
+  require('includes/application_top.php');
+
+	$product_investigation = (isset($HTTP_GET_VARS['pID']))? qtpro_doctor_investigate_product($HTTP_GET_VARS['pID']) : null;
+	$qtpro_sick_count = qtpro_sick_product_count();
+	if ($qtpro_sick_count != 0) {
+	  $messageStack->add(sprintf(constant('MODULE_CONTENT_QTPRO_ADMIN_WARNING_' . strtoupper($language)), $qtpro_sick_count, tep_href_link('qtprodoctor.php')), 'error');
+  }
+
+  require('includes/template_top.php');
    
   require('includes/classes/currencies.php');
   $currencies = new currencies();
@@ -155,11 +162,11 @@
           // now display the attribute value names, table the html for quantity & price to get everything
           // to line up right
 		  $model_html_table="                <table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"2\">\n";
-          $model_html_table.="                  <tr class=\"dataTableRowSelected\"><td class=\"smalltext\" colspan=\"" . sizeof($products_options_array) . "\">&nbsp;</td></tr>\n";
+          $model_html_table.="                  <tr class=\"dataTableRowSelected\"><td class=\"smalltext\" colspan=\"" . sizeof($products_options_name) . "\">&nbsp;</td></tr>\n";
           $quantity_html_table="               <table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"2\">\n";
-          $quantity_html_table.="                  <tr class=\"dataTableRowSelected\"><td class=\"smalltext\" colspan=\"" . sizeof($products_options_array) . "\">&nbsp;</td></tr>\n";
+          $quantity_html_table.="                  <tr class=\"dataTableRowSelected\"><td class=\"smalltext\" colspan=\"" . sizeof($products_options_name) . "\">&nbsp;</td></tr>\n";
           $price_html_table="                <table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"2\">\n";
-          $price_html_table.="                  <tr class=\"dataTableRowSelected\"><td class=\"smalltext\" colspan=\"" . sizeof($products_options_array) . "\">&nbsp;</td></tr>\n";
+          $price_html_table.="                  <tr class=\"dataTableRowSelected\"><td class=\"smalltext\" colspan=\"" . sizeof($products_options_name) . "\">&nbsp;</td></tr>\n";
           while($products_stock_values=tep_db_fetch_array($products_stock_query)) {
             $attributes=explode(",",$products_stock_values['products_stock_attributes']);
             echo "                  <tr class=\"dataTableRowSelected\">\n"; 

@@ -24,10 +24,10 @@
   
   
 */
-define('HEADING_TITLE', 'Lagerrapport');
+define('HEADING_TITLE', 'Stock Report');
 
-define('TABLE_HEADING_PRODUCTS', 'Produkter');
-define('TABLE_HEADING_MODEL', 'Modell');
-define('TABLE_HEADING_QUANTITY', 'Antal');
-define('TABLE_HEADING_PRICE', 'Pris');
+define('TABLE_HEADING_PRODUCTS', 'Products');
+define('TABLE_HEADING_MODEL', 'Model');
+define('TABLE_HEADING_QUANTITY', 'Quantity');
+define('TABLE_HEADING_PRICE', 'Price');
 ?>

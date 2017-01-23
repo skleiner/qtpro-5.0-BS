@@ -1,30 +1,31 @@
 <?php
 /*
-      QT Pro Version 4.1
+  $Id: qtprodoctor.php
+  $Loc: catalog/admin/
+      
+  2017 QTPro 5.0 BS
+  by @raiwa 
+  info@oscaddons.com
+  www.oscaddons.com
   
-      stock.php
-  
-      Contribution extension to:
-        osCommerce, Open Source E-Commerce Solutions
-        http://www.oscommerce.com
+  osCommerce, Open Source E-Commerce Solutions
+  http://www.oscommerce.com
+
+  Copyright (c) 2010 osCommerce
      
-      Copyright (c) 2004, 2005 Ralph Day
-      Released under the GNU General Public License
+  Released under the GNU General Public License
   
-      Based on prior works released under the GNU General Public License:
-        QT Pro prior versions
-          Ralph Day, October 2004
-          Tom Wojcik aka TomThumb 2004/07/03 based on work by Michael Coffman aka coffman
-          FREEZEHELL - 08/11/2003 freezehell@hotmail.com Copyright (c) 2003 IBWO
-          Joseph Shain, January 2003
-        osCommerce MS2
-          Copyright (c) 2003 osCommerce
-          
-      Modifications made:
-        11/2004 - Add input validation
-                  clean up register globals off problems
-                  use table name constant for products_stock instead of hard coded table name
-        03/2005 - Change $_SERVER to $HTTP_SERVER_VARS for compatibility with older php versions
+  Based on prior works released under the GNU General Public License:
+  QT Pro prior versions
+  Ralph Day, October 2004
+  Tom Wojcik aka TomThumb 2004/07/03 based on work by Michael Coffman aka coffman
+  FREEZEHELL - 08/11/2003 freezehell@hotmail.com Copyright (c) 2003 IBWO
+  Joseph Shain, January 2003
+  Modifications made:
+  11/2004 - Add input validation
+            clean up register globals off problems
+            use table name constant for products_stock instead of hard coded table name
+  03/2005 - Change $_SERVER to $HTTP_SERVER_VARS for compatibility with older php versions
         
 *******************************************************************************************
   
@@ -44,9 +45,15 @@
   Attributes Inventory - FREEZEHELL - 08/11/2003 freezehell@hotmail.com
   Copyright (c) 2003 IBWO
 
-  Released under the GNU General Public License
 */
   require('includes/application_top.php');
+
+ 	$product_investigation = (isset($HTTP_GET_VARS['pID']))? qtpro_doctor_investigate_product($HTTP_GET_VARS['pID']) : null;
+	$qtpro_sick_count = qtpro_sick_product_count();
+	if ($qtpro_sick_count != 0) {
+	  $messageStack->add(sprintf(constant('MODULE_CONTENT_QTPRO_ADMIN_WARNING_' . strtoupper($language)), $qtpro_sick_count, tep_href_link('qtprodoctor.php')), 'error');
+  }
+
   require('includes/template_top.php');
 
   $VARS = null;
@@ -153,22 +160,26 @@
     }
     echo '<td class="dataTableHeadingContent"><span class="smalltext">' . TABLE_HEADING_QUANTITY . '</span></td><td width="100%">&nbsp;</td>';
     echo '</tr>';
-	//sorting below goes by name rather than products_stock_attributes. Much easier to have it all sorted alphabetically
-	  $q = tep_db_query("select ps.products_stock_id, ps.products_id, ps.products_stock_attributes, ps.products_stock_quantity, pov.products_options_values_id, pov.language_id, pov.products_options_values_name from products_stock ps, products_options_values pov where ps.products_id=" . $VARS['product_id'] . " and pov.products_options_values_id = substring_index(ps.products_stock_attributes, '-', -1) order by pov.products_options_values_name asc");
+    //sorting below goes by name rather than products_stock_attributes. Much easier to have it all sorted alphabetically
+    $q = tep_db_query("select ps.products_stock_id, ps.products_id, ps.products_stock_attributes, ps.products_stock_quantity, pov.products_options_values_id, pov.language_id, pov.products_options_values_name from products_stock ps, products_options_values pov where ps.products_id=" . $VARS['product_id'] . " and pov.products_options_values_id = substring_index(ps.products_stock_attributes, '-', -1) order by pov.products_options_values_name asc");
+    $test_string = null;
     while($rec = tep_db_fetch_array($q)) {
       $val_array = explode(',', $rec['products_stock_attributes']);
-      echo '<tr>';
-      foreach($val_array as $val) {
-        if (preg_match('/^(\d+)-(\d+)$/',$val,$m1)) {
-          echo '<td class="smalltext">&nbsp;&nbsp;&nbsp;' . tep_values_name($m1['2']) . '</td>';
-        } else {
+      if (strpos($test_string, $rec['products_stock_attributes']) === false) {
+        echo '<tr>';
+        foreach($val_array as $val) {
+          if (preg_match('/^(\d+)-(\d+)$/',$val,$m1)) {
+            echo '<td class="smalltext">&nbsp;&nbsp;&nbsp;' . tep_values_name($m1['2']) . '</td>';
+          } else {
+            echo '<td>&nbsp;</td>';
+          }
+        }
+        for($i = 0;$i<sizeof($options)-sizeof($val_array);$i++) {
           echo '<td>&nbsp;</td>';
         }
+        echo '<td class="smalltext">&nbsp;&nbsp;&nbsp;&nbsp;' . $rec['products_stock_quantity'] . '</td><td>&nbsp;</td></tr>';
+        $test_string .= $rec['products_stock_attributes'] . ';';
       }
-      for($i = 0;$i<sizeof($options)-sizeof($val_array);$i++) {
-        echo '<td>&nbsp;</td>';
-      }
-      echo '<td class="smalltext">&nbsp;&nbsp;&nbsp;&nbsp;' . $rec['products_stock_quantity'] . '</td><td>&nbsp;</td></tr>';
     }
     echo '<tr>';
     reset($options);

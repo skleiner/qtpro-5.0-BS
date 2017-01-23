@@ -2,7 +2,7 @@
 /*
       QT Pro Version 4.0
   
-      stock.php language file
+      stats_low_stock_attrib.php language file
   
       Contribution extension to:
         osCommerce, Open Source E-Commerce Solutions
@@ -19,14 +19,15 @@
           Joseph Shain, January 2003
         osCommerce MS2
           Copyright (c) 2003 osCommerce
-          
-      Modifications made:
-        11/2004 - none in this version
   
 *******************************************************************************************
   
   
 */
-define('PRODUCTS_STOCK',"Varulager");
-define('TABLE_TITLE_ATTRIBUTES',"Alternativ");
+define('HEADING_TITLE', 'Informe de Stock');
+
+define('TABLE_HEADING_PRODUCTS', 'Productos');
+define('TABLE_HEADING_MODEL', 'Modelo');
+define('TABLE_HEADING_QUANTITY', 'Cantidad');
+define('TABLE_HEADING_PRICE', 'Precio');
 ?>
