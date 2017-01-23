@@ -33,10 +33,11 @@ To do list:
 - <strike>replace all mods in checkout_process.php by hooks</strike>
 - <strike>Move stock checks in checkout_payment.php and checkout_confirmation.php to ht module</strike>
 - add <strike>spanish</strike> and german translations
-- Add installation checks to all modules
+- <strike>Add installation checks to all modules</strike>
 - <strike>Merge standard and modular product info product listing module by kymation into one universal module</strike>
 - check compatibility with ajax attribute manager
 - add support for attribute sort order
+- add support for paypal standard
 - update instructions
 
 It would be great if there appear testers for the mods.
