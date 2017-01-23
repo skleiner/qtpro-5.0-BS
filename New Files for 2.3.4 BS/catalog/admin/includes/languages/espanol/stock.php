@@ -36,7 +36,12 @@ define('TEXT_LINK_EDIT_PRODUCT','Editar producto');
 define('TEXT_LINK_LOW_STOCK_REPORT','Ir al informe de stock');
 define('TEXT_LINK_GO_TO_PRODUCT','Ir a este producto en: ');
 define('WARNING_NO_PRODUCT','Atención! Este producto no parece existir en ninguna categoría. Sus clientes no lo encontrarán.');
- 
+
+define('QTPRO_OPTIONS_WARNING', '<strong>El Módulo de contenido QT Pro Product Info</strong> no está instalado. Es requerido.');
+define('QTPRO_OPTIONS_INSTALL_NOW', '<u>Instalar Ahora el módulo QT Pro Product Info</u>');
+define('QTPRO_HT_WARNING', '<strong>El Módulo QT Pro Header Tag</strong> no está instalado o no está habilitado. Es requerido.');
+define('QTPRO_HT_INSTALL_NOW', '<u>Instalar Ahora el módulo QT Pro Header Tag</u>');
+
 define('BUTTON_ADD','Añadir');
 define('BUTTON_UPDATE','Actualizar');
 

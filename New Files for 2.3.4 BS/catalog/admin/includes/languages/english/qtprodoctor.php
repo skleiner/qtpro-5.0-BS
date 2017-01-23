@@ -26,6 +26,11 @@ define('TEXT_AMPUTATE', '%s database entries where amputated.');
 define('TEXT_CHUCK_TRASH', '%s database entries where identified as trash and deleted.');
 define('TEXT_UPDATE_SUMMARY', 'The summary stock for the product was updated.');
 
+define('QTPRO_OPTIONS_WARNING', '<strong>QT Pro Product Info Content Module</strong> is not installed. It is required.');
+define('QTPRO_OPTIONS_INSTALL_NOW', '<u>Install Now QT Pro Product Info Module</u>');
+define('QTPRO_HT_WARNING', '<strong>QT Pro Header Tag Module</strong> is not installed or not enabled. It is required.');
+define('QTPRO_HT_INSTALL_NOW', '<u>Install Now Header Tag Module</u>');
+
 define('TEXT_PRODUCT_COUNT', 'You currently have <b>%s</b> products in your store.<br>');
 define('TEXT_PRODUCT_TRACKED_STOCK', '<b>%s</b> of them have options with tracked stock.<br>');
 define('TEXT_PRODUCT_TRASH_ROWS', 'In the database we currently have <b>%s</b> trash rows.<br>');

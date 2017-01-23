@@ -18,6 +18,15 @@
 
   require('includes/application_top.php');
   require('includes/template_top.php');
+  
+  if (!defined('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_STATUS')) {
+    echo '<div class="secWarning">' . QTPRO_OPTIONS_WARNING . '<br>
+          <a href="modules_content.php?module=cm_pi_qtpro_options&action=install">' . QTPRO_OPTIONS_INSTALL_NOW . '</a></div>';
+  }
+  if ( !defined('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS') || (defined('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS') && MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS != 'True') ) {
+    echo '<div class="secWarning">' . QTPRO_HT_WARNING . '<br>
+                                <a href="modules.php?set=header_tags&module=ht_qtpro_stock_check&action=install">' . QTPRO_HT_INSTALL_NOW . '</a></div>';
+  }
 
   $doctor_action = null;
 

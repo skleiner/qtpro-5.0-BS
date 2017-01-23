@@ -12,4 +12,6 @@
 
   define('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_TITLE', 'QT Pro Stock Check');
   define('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_DESCRIPTION', 'Add the QT Pro stock check to checkout pages');
-  
+
+  define('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_OPTIONS_WARNING', '<strong>"QT Pro" Product Info Content-Module</strong> ist nicht installiert.');
+  define('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_OPTIONS_INSTALL_NOW', '<u>Product Info Modul installieren</u>');

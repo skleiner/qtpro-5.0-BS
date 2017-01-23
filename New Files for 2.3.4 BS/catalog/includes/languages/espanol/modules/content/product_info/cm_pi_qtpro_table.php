@@ -16,3 +16,8 @@
   define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_HEADING', 'Currently on stock:');
   define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_PRICE', 'Price');
   define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_STOCK', 'Qty.');
+
+  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_WARNING', '<strong>El Módulo de contenido QT Pro Product Info</strong> no está instalado. Es requerido.');
+  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_INSTALL_NOW', '<u>Instalar Ahora el módulo QT Pro Product Info</u>');
+  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_HT_WARNING', '<strong>El Módulo QT Pro Header Tag</strong> no está instalado o no está habilitado. Es requerido.');
+  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_HT_INSTALL_NOW', '<u>Instalar Ahora el módulo QT Pro Header Tag</u>');

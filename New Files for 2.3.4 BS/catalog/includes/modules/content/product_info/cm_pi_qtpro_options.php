@@ -24,6 +24,10 @@
 
       $this->title = MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_TITLE;
       $this->description = MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_DESCRIPTION;
+      if ( !defined('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS') || (defined('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS') && MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS != 'True') ) {
+        $this->description .=   '<div class="secWarning">' . MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_HT_WARNING . '<br>
+                                <a href="modules.php?set=header_tags&module=ht_qtpro_stock_check&action=install">' . MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_HT_INSTALL_NOW . '</a></div>';
+      }
       $this->description .= '<div class="secWarning">' . MODULE_CONTENT_BOOTSTRAP_ROW_DESCRIPTION . '</div>';
 
       if ( defined('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_STATUS') ) {
