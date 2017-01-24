@@ -35,8 +35,8 @@ To do list:
 - add <strike>spanish</strike> and german translations
 - <strike>Add installation checks to all modules</strike>
 - <strike>Merge standard and modular product info product listing module by kymation into one universal module</strike>
-- check compatibility with ajax attribute manager
-- add support for attribute sort order
+- <strike>check compatibility with ajax attribute manager</strike>
+- <strike>add support for attribute sort order</strike>
 - add support for paypal standard
 - update instructions
 
