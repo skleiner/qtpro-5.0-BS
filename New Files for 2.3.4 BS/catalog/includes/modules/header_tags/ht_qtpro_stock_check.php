@@ -48,9 +48,9 @@
           $any_out_of_stock = 0;
           for ($i=0, $n=sizeof($products); $i<$n; $i++) {
             if (isset($products[$i]['attributes']) && is_array($products[$i]['attributes'])) {
-              $stock_check = $this->check_stock_qtpro($products[$i]['id'], $products[$i]['quantity'], $products[$i]['attributes']);
+              $stock_check = check_stock_qtpro($products[$i]['id'], $products[$i]['quantity'], $products[$i]['attributes']);
             } else {
-              $stock_check = $this->check_stock_qtpro($products[$i]['id'], $products[$i]['quantity']);
+              $stock_check = check_stock_qtpro($products[$i]['id'], $products[$i]['quantity']);
             }
             if ($stock_check) $any_out_of_stock = 1;
           }
@@ -72,9 +72,9 @@
               foreach ($order->products[$i]['attributes'] as $attribute) {
                 $attributes[$attribute['option_id']]=$attribute['value_id'];
               }
-              $check_stock[$i] = $this->check_stock_qtpro($order->products[$i]['id'], $order->products[$i]['qty'], $attributes);
+              $check_stock[$i] = check_stock_qtpro($order->products[$i]['id'], $order->products[$i]['qty'], $attributes);
             } else {
-              $check_stock[$i] = $this->check_stock_qtpro($order->products[$i]['id'], $order->products[$i]['qty']);
+              $check_stock[$i] = check_stock_qtpro($order->products[$i]['id'], $order->products[$i]['qty']);
             }
             if ($check_stock[$i]) {
               $any_out_of_stock = true;
@@ -108,15 +108,17 @@
       return array('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS', 'MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_SORT_ORDER');
     }
     
+  } // end class
+
     ////
     // Check if the required stock is available
     // If insufficent stock is available return $out_of_stock = true
     function check_stock_qtpro($products_id, $products_quantity, $attributes=array()) {
-      $stock_left = $this->get_products_stock_qtpro($products_id, $attributes) - $products_quantity;
+      $stock_left = get_products_stock_qtpro($products_id, $attributes) - $products_quantity;
       $out_of_stock = '';
 
       if ($stock_left < 0) {
-        $out_of_stock = true;
+      $out_of_stock = '<span class="text-danger"><b>' . STOCK_MARK_PRODUCT_OUT_OF_STOCK . '</b></span>';
       }
 
       return $out_of_stock;
@@ -155,6 +157,3 @@
       }
       return $quantity;
     }
-    
-  } // end class
-  
