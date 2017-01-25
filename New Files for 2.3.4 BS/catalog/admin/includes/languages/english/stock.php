@@ -61,6 +61,7 @@ define('TEXT_DETAILED_STOCK_ENTRIES_NOT_HEALTHY','<span style="color:red; font-w
 				This means that at least one of the database entries for this product is messed up. Either options are missing in rows or options exist in rows they should not.<br>
 				<b>Total number of stock entries this product has: &s </b><br>
 				<b>Number of messy entries: %s</b><br><br>');
+define('TEXT_DETAILED_STOCK_AUTOMATIC_SOLUTIONS_AVAILABLE','<p><span style="color:blue; font-weight: bold; font-size:1.2em;">Automatic Solutions Avaliable:</span><br>');
 define('TEXT_DETAILED_STOCK_SOLUTIONS_STOP_TRACKING','<span style="color:blue; font-weight: bold;">Possible solutions: </span>Delete the corresponding row(s) from the database or stop tracking the stock for that option.<br><br>');
 define('TEXT_DETAILED_STOCK_OPTIONS_SHOULD_NOT_EXIST','<br><b>These options exists in row(s) although they should not:</b><br>');
 define('TEXT_DETAILED_STOCK_SOLUTIONS_START_TRACKING','<span style="color:blue; font-weight: bold;">Possible solutions: </span>Delete the corresponding row(s) from the database or start tracking the stock for that option.<br><br>');
