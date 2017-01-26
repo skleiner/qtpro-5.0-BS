@@ -46,6 +46,8 @@ define('BUTTON_ADD','Add');
 define('BUTTON_UPDATE','Update');
 
 // detailed product inverstigation used in qtpro_doctor_formulate_product_investigation function
+define('TEXT_DETAILED_STOCK_ALL_OK','<span style="color:green; font-weight: bold; font-size:1.5em;">This product is all ok.</span><br><br>');
+define('TEXT_DETAILED_STOCK_NEEDS_ATTENTION','<span style="color:red; font-weight: bold; font-size:1.5em;">This product needs attention!</span><br><br>');
 define('TEXT_DETAILED_STOCK_MATCH_TRUE','<span style="color:green; font-weight: bold; font-size:1.2em;">The stock quantity summary is ok</span><br>
 				This means that the current summary of this products quantity, which is in the database, is the value we get if we calculates it from scratch right now.<br>
 				<b>The Summary stock is: %s </b><br><br>');

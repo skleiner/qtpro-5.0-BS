@@ -10,12 +10,12 @@
   Released under the GNU General Public License
 */
 
-  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_TITLE', 'QTPRO Stock Table');
-  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_DESCRIPTION', 'Shows the QTPRO Stock Table on the Product Info Page.');
+  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_TITLE', 'QTPRO Lagerbestandstabelle');
+  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_DESCRIPTION', 'Zeigt die QTPRO Stock Lagerbestandstabelle auf der Produktseite.');
   
-  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_HEADING', 'Currently on stock:');
-  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_PRICE', 'Price');
-  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_STOCK', 'Qty.');
+  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_HEADING', 'Auf Lager:');
+  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_PRICE', 'Preis');
+  define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_TABLE_STOCK', 'Menge.');
 
   define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_WARNING', '<strong>"QT Pro" Product Info Content-Module</strong> ist nicht installiert.');
   define('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_INSTALL_NOW', '<u>Product Info Modul installieren</u>');
