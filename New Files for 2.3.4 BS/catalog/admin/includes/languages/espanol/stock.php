@@ -56,7 +56,7 @@ define('TEXT_DETAILED_STOCK_MATCH_FALSE','<span style="color:red; font-weight: b
 				<b>El stock total es: %s </b><br>
 				<b>Si lo calculamos obtenemos: %s </b><br><br>');
 define('TEXT_DETAILED_STOCK_ENTRIES_HEALTHY','<span style="color:green; font-weight: bold; font-size:1.2em;">El stock de opciones está bien</span><br>
-				Esto significa que las entradas de la base de datos para este producto están como deberían. No hay opciones faltantes22 en ninguna fila. No existe ninguna opción en ninguna fila donde no debería estar.<br>
+				Esto significa que las entradas de la base de datos para este producto están como deberían. No hay opciones faltantes en ninguna fila. No existe ninguna opción en ninguna fila donde no debería estar.<br>
 				<b>El número total de entradas de stock de este producto es: %s </b><br>
 				<b>Número de entradas erróneas: %s </b><br>');
 define('TEXT_DETAILED_STOCK_ENTRIES_NOT_HEALTHY','<span style="color:red; font-weight: bold; font-size:1.2em;">El stock de opciones NO está bien</span><br>
