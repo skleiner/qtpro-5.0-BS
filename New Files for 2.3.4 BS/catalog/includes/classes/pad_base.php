@@ -244,13 +244,25 @@
       } elseif ($build_nonstocked) {
         $stocked_where="and popt.products_options_track_stock = '0'";
       }
-      
-      $products_options_name_query = tep_db_query("select distinct popt.products_options_id, popt.products_options_name, popt.products_options_track_stock from products_options popt, products_attributes patrib where patrib.products_id='" . (int)$this->products_id . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "' " . $stocked_where . " order by popt.products_options_name");
-      $attributes=array();
+      // product options sort order support
+      if ( defined('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_USE_OPT_ATTR_SORT_ORDER') && MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_USE_OPT_ATTR_SORT_ORDER == 'True' ) {
+        $products_options_sort = 'popt.products_options_sort_order';
+      } else {
+        $products_options_sort = 'popt.products_options_name';
+      }
+
+      $products_options_name_query = tep_db_query("select distinct popt.products_options_id, popt.products_options_name, popt.products_options_track_stock from products_options popt, products_attributes patrib where patrib.products_id='" . (int)$this->products_id . "' and patrib.options_id = popt.products_options_id and popt.language_id = '" . (int)$languages_id . "' " . $stocked_where . " order by " . $products_options_sort);
+      $attributes = array();
 	  
       while ( $products_options_name = tep_db_fetch_array($products_options_name_query) ) {
         $products_options_array = array();
-        $products_options_query = tep_db_query("select pov.products_options_values_id, pov.products_options_values_name, pa.options_values_price, pa.price_prefix from products_attributes pa, products_options_values pov where pa.products_id = '" . (int)$this->products_id . "' and pa.options_id = '" . (int)$products_options_name['products_options_id'] . "' and pa.options_values_id = pov.products_options_values_id and pov.language_id = '" . (int)$languages_id . "'");
+        // product options sort order support
+        if ( defined('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_USE_OPT_ATTR_SORT_ORDER') && MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_USE_OPT_ATTR_SORT_ORDER == 'True' ) {
+          $products_attributes_sort = ' order by pa.products_options_sort_order';
+        } else {
+          $products_attributes_sort = '';
+        }
+        $products_options_query = tep_db_query("select pov.products_options_values_id, pov.products_options_values_name, pa.options_values_price, pa.price_prefix from products_attributes pa, products_options_values pov where pa.products_id = '" . (int)$this->products_id . "' and pa.options_id = '" . (int)$products_options_name['products_options_id'] . "' and pa.options_values_id = pov.products_options_values_id and pov.language_id = '" . (int)$languages_id . "'" . $products_attributes_sort);
         while ( $products_options = tep_db_fetch_array($products_options_query) ) {
           $products_options_array[] = array('id' => $products_options['products_options_values_id'], 'text' => $products_options['products_options_values_name']);
           if(MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN == 'True'){

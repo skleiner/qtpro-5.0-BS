@@ -212,56 +212,45 @@ function qtpro_doctor_formulate_product_investigation($facts_array, $formulate_s
 			
 			//Talk about summary and calc stock
 			if ($facts_array['summary_and_calc_stock_match']) {
-				$str_ret .= '<span style="color:green; font-weight: bold; font-size:1.2em;">The stock quantity summary is ok</span><br />
-				This means that the current summary of this products quantity, which is in the database, is the value we get if we calculates it from scratch right now.<br />
-				<b>The Summary stock is: '. $facts_array['summary_stock'] .'</b><br /><br />';
+				$str_ret .= sprintf(TEXT_DETAILED_STOCK_MATCH_TRUE, $facts_array['summary_stock']);
 			} else {
-				$str_ret .= '<span style="color:red; font-weight: bold; font-size:1.2em;">The stock quantity summary is NOT ok</span><br />
-				This means that the current summary of this products quantity, which is in the database, isn\'t the value we get if we calculates it from scratch right now.<br />
-				<b>The current summary stock is: '. $facts_array['summary_stock'] .'</b><br />
-				<b>If we calculates it we get: '. $facts_array['calc_stock'] .'</b><br /><br />';
+				$str_ret .= sprintf(TEXT_DETAILED_STOCK_MATCH_FALSE, $facts_array['summary_stock'], $facts_array['calc_stock']);
 			}
 
 			//Talk about the health of the stock entries
 			if ($facts_array['stock_entries_healthy']) {
-				$str_ret .= '<span style="color:green; font-weight: bold; font-size:1.2em;">The options stock is ok</span><br />
-				This means that the database entries for this product looks the way they should. No options are missing in any row. No option exist in any row where it should not.<br />
-				<b>Total number of stock entries this product has: '. $facts_array['stock_entries_count'] .'</b><br />
-				<b>Number of messy entries: '. $facts_array['sick_stock_entries_count'] .'</b><br />';
+				$str_ret .= sprintf(TEXT_DETAILED_STOCK_ENTRIES_HEALTHY, $facts_array['stock_entries_count'], $facts_array['sick_stock_entries_count']);
 				
 			} else {
-				$str_ret .= '<span style="color:red; font-weight: bold; font-size:1.2em;">The options stock is NOT ok</span><br />
-				This means that at least one of the database entries for this product is messed up. Either options are missing in rows or options exist in rows they should not.<br />
-				<b>Total number of stock entries this product has: '. $facts_array['stock_entries_count'] .'</b><br />
-				<b>Number of messy entries: '. $facts_array['sick_stock_entries_count'] .'</b><br /><br />';
+				$str_ret .= sprintf(TEXT_DETAILED_STOCK_ENTRIES_NOT_HEALTHY, $facts_array['stock_entries_count'], $facts_array['sick_stock_entries_count']);
 				
 				if (sizeof($facts_array['lacks_id_array']) > 0) {
-					$str_ret .='<b>These options were missing in row(s):</b><br />';
+					$str_ret .= '<b>These options were missing in row(s):</b><br />';
 					foreach ($facts_array['lacks_id_array'] as $lack_id) {
-						$str_ret .= '<span style="color:red;"><b>'. tep_options_name($lack_id) .'</b></span><br />';
+						$str_ret .= '<span style="color:red;"><b>'. tep_options_name($lack_id) .'</b></span><br>';
 					}
-					$str_ret .='<span style="color:blue; font-weight: bold;">Possible solutions: </span>Delete the corresponding row(s) from the database or stop tracking the stock for that option.<br /><br />';
+					$str_ret .= TEXT_DETAILED_STOCK_SOLUTIONS_STOP_TRACKING;
 				}
 				
 				if (sizeof($facts_array['intruders_id_array']) > 0) {
-					$str_ret .= '<br /><b>These options exists in row(s) although they should not:</b><br />';
+					$str_ret .= TEXT_DETAILED_STOCK_OPTIONS_SHOULD_NOT_EXIST;
 					foreach ($facts_array['intruders_id_array'] as $intruder_id) {
-						$str_ret .= '<span style="color:red;"><b>'. tep_options_name($intruder_id) .'</b></span><br />';
+						$str_ret .= '<span style="color:red;"><b>'. tep_options_name($intruder_id) .'</b></span><br>';
 					}
-					$str_ret .='<span style="color:blue; font-weight: bold;">Possible solutions: </span>Delete the corresponding row(s) from the database or start tracking the stock for that option.<br /><br />';
+					$str_ret .= TEXT_DETAILED_STOCK_SOLUTIONS_START_TRACKING;
 				}
 				
 			}
 			
 			//Talk about automatic solutions
 			if ($facts_array['any_problems']) {
-				$str_ret .='<p><span style="color:blue; font-weight: bold; font-size:1.2em;">Automatic Solutions Avaliable:</span><br />';
+				$str_ret .= TEXT_DETAILED_STOCK_AUTOMATIC_SOLUTIONS_AVAILABLE;
 				
 				if (!$facts_array['stock_entries_healthy']) {
-					$str_ret .='<p><a href="' . tep_href_link('qtprodoctor.php', 'action=amputate&pID='.$facts_array['id'], 'NONSSL') . '" class="menuBoxContentLink" target="_blank">Amputation (Deletes all messy rows)</a></p>';
+					$str_ret .='<p><a href="' . tep_href_link('qtprodoctor.php', 'action=amputate&pID='.$facts_array['id'], 'NONSSL') . '" class="menuBoxContentLink" target="_blank">' . TEXT_DETAILED_STOCK_LINK_AMPUTATION . '</a></p>';
 				}
 				if (!$facts_array['summary_and_calc_stock_match']) {
-					$str_ret .='<p><a href="' . tep_href_link('qtprodoctor.php', 'action=update_summary&pID='.$facts_array['id'], 'NONSSL') . '" class="menuBoxContentLink" target="_blank">Set the summary stock to: '. $facts_array['calc_stock'] .'</a></p>';
+					$str_ret .='<p><a href="' . tep_href_link('qtprodoctor.php', 'action=update_summary&pID='.$facts_array['id'], 'NONSSL') . '" class="menuBoxContentLink" target="_blank">' . sprintf(TEXT_DETAILED_STOCK_LINK_SET_SUMMARY, $facts_array['calc_stock']) .'</a></p>';
 				}
 				
 				$str_ret .='</p>';
@@ -414,7 +403,11 @@ function qtpro_get_products_summary_stock($products_id) {
 											                          FROM products 
 											                          WHERE products_id = '" . $products_id . "'");
 	$product_facts = tep_db_fetch_array($products_summary_stock_query);
-	return $product_facts['products_quantity'];
+	if ($product_facts['products_quantity'] > 0) { //If they are negative they are oversold and this do not affect what we have on stock. added by @raiwa to avoid error if negative stock
+	  return $product_facts['products_quantity'];
+	} else {
+	  return 0;
+	}
 }
 
 //This function will calculate and return the summary_stock for a product. If it is a product without tracked attributes the summary_stock will be returned anyway.

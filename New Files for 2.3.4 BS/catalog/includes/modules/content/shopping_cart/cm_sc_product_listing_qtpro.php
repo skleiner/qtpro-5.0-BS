@@ -25,6 +25,14 @@
 
       $this->title = MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_TITLE;
       $this->description = MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_DESCRIPTION;
+      if (!defined('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_STATUS')) {
+        $this->description .=   '<div class="secWarning">' . MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_OPTIONS_WARNING . '<br>
+                                <a href="modules_content.php?module=cm_pi_qtpro_options&action=install">' . MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_OPTIONS_INSTALL_NOW . '</a></div>';
+      }
+      if ( !defined('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS') || (defined('MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS') && MODULE_HEADER_TAGS_QTPRO_STOCK_CHECK_STATUS != 'True') ) {
+        $this->description .=   '<div class="secWarning">' . MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_HT_WARNING . '<br>
+                                <a href="modules.php?set=header_tags&module=ht_qtpro_stock_check&action=install">' . MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_HT_INSTALL_NOW . '</a></div>';
+      }
 
       if ( defined('MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_STATUS') ) {
         $this->sort_order = MODULE_CONTENT_SC_PRODUCT_LISTING_QTPRO_SORT_ORDER;

@@ -632,7 +632,7 @@ updateGross();
              //++++ QT Pro: Begin Changed code
              if($product_investigation['has_tracked_options'] or $product_investigation['stock_entries_count'] > 0) {
                ?>
-               <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . tep_draw_button(TEXT_PRODUCTS_QUANTITY, 'pencil', tep_href_link('stock.php', 'product_id=' . $pInfo->products_id))?></td>
+               <td class="main"><?php echo tep_draw_separator('pixel_trans.gif', '24', '15') . tep_draw_button(constant('MODULE_CONTENT_QTPRO_STOCK_BUTTON_' . strtoupper($language)), 'clipboard', tep_href_link('stock.php', 'product_id=' . $pInfo->products_id))?></td>
                <?php
              } else {
                ?>
@@ -1154,9 +1154,7 @@ $('#products_date_available').datepicker({
 
             $heading[] = array('text' => '<strong>' . $cInfo->categories_name . '</strong>');
 
-            //++++ QT Pro: Begin Changed code
             $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT, 'document', tep_href_link('categories.php', 'cPath=' . $category_path_string . '&cID=' . $cInfo->categories_id . '&action=edit_category')) . tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link('categories.php', 'cPath=' . $category_path_string . '&cID=' . $cInfo->categories_id . '&action=delete_category')) . tep_draw_button(IMAGE_MOVE, 'arrow-4', tep_href_link('categories.php', 'cPath=' . $category_path_string . '&cID=' . $cInfo->categories_id . '&action=move_category')));
-            //++++ QT Pro: End Changed code
             $contents[] = array('text' => '<br />' . TEXT_DATE_ADDED . ' ' . tep_date_short($cInfo->date_added));
             if (tep_not_null($cInfo->last_modified)) $contents[] = array('text' => TEXT_LAST_MODIFIED . ' ' . tep_date_short($cInfo->last_modified));
             $contents[] = array('text' => '<br />' . tep_info_image($cInfo->categories_image, $cInfo->categories_name, HEADING_IMAGE_WIDTH, HEADING_IMAGE_HEIGHT) . '<br />' . $cInfo->categories_image);
@@ -1164,7 +1162,9 @@ $('#products_date_available').datepicker({
           } elseif (isset($pInfo) && is_object($pInfo)) { // product info box contents
             $heading[] = array('text' => '<strong>' . tep_get_products_name($pInfo->products_id, $languages_id) . '</strong>');
 
+            //++++ QT Pro: Begin Changed code
             $contents[] = array('align' => 'center', 'text' => tep_draw_button(IMAGE_EDIT, 'document', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=new_product')) . tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=delete_product')) . tep_draw_button(IMAGE_MOVE, 'arrow-4', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=move_product')) . tep_draw_button(IMAGE_COPY_TO, 'copy', tep_href_link('categories.php', 'cPath=' . $cPath . '&pID=' . $pInfo->products_id . '&action=copy_to')) . tep_draw_button(constant('MODULE_CONTENT_QTPRO_STOCK_BUTTON_' . strtoupper($language)), 'clipboard', tep_href_link('stock.php', 'product_id=' . $pInfo->products_id)));
+            //++++ QT Pro: End Changed code
             $contents[] = array('text' => '<br />' . TEXT_DATE_ADDED . ' ' . tep_date_short($pInfo->products_date_added));
             if (tep_not_null($pInfo->products_last_modified)) $contents[] = array('text' => TEXT_LAST_MODIFIED . ' ' . tep_date_short($pInfo->products_last_modified));
             if (date('Y-m-d') < $pInfo->products_date_available) $contents[] = array('text' => TEXT_DATE_AVAILABLE . ' ' . tep_date_short($pInfo->products_date_available));

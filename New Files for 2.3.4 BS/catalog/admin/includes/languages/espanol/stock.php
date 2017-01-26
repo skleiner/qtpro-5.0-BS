@@ -36,7 +36,12 @@ define('TEXT_LINK_EDIT_PRODUCT','Editar producto');
 define('TEXT_LINK_LOW_STOCK_REPORT','Ir al informe de stock');
 define('TEXT_LINK_GO_TO_PRODUCT','Ir a este producto en: ');
 define('WARNING_NO_PRODUCT','Atención! Este producto no parece existir en ninguna categoría. Sus clientes no lo encontrarán.');
- 
+
+define('QTPRO_OPTIONS_WARNING', '<strong>El Módulo de contenido QT Pro Product Info</strong> no está instalado. Es requerido.');
+define('QTPRO_OPTIONS_INSTALL_NOW', '<u>Instalar Ahora el módulo QT Pro Product Info</u>');
+define('QTPRO_HT_WARNING', '<strong>El Módulo QT Pro Header Tag</strong> no está instalado o no está habilitado. Es requerido.');
+define('QTPRO_HT_INSTALL_NOW', '<u>Instalar Ahora el módulo QT Pro Header Tag</u>');
+
 define('BUTTON_ADD','Añadir');
 define('BUTTON_UPDATE','Actualizar');
 
@@ -56,6 +61,7 @@ define('TEXT_DETAILED_STOCK_ENTRIES_NOT_HEALTHY','<span style="color:red; font-w
 				This means that at least one of the database entries for this product is messed up. Either options are missing in rows or options exist in rows they should not.<br>
 				<b>Total number of stock entries this product has: &s </b><br>
 				<b>Number of messy entries: %s</b><br><br>');
+define('TEXT_DETAILED_STOCK_AUTOMATIC_SOLUTIONS_AVAILABLE','<p><span style="color:blue; font-weight: bold; font-size:1.2em;">Soluciones automáticas disponibles:</span><br>');
 define('TEXT_DETAILED_STOCK_SOLUTIONS_STOP_TRACKING','<span style="color:blue; font-weight: bold;">Possible solutions: </span>Delete the corresponding row(s) from the database or stop tracking the stock for that option.<br><br>');
 define('TEXT_DETAILED_STOCK_OPTIONS_SHOULD_NOT_EXIST','<br><b>These options exists in row(s) although they should not:</b><br>');
 define('TEXT_DETAILED_STOCK_SOLUTIONS_START_TRACKING','<span style="color:blue; font-weight: bold;">Possible solutions: </span>Delete the corresponding row(s) from the database or start tracking the stock for that option.<br><br>');

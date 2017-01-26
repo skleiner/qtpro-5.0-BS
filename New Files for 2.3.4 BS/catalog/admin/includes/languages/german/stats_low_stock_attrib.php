@@ -30,4 +30,8 @@ define('TABLE_HEADING_PRODUCTS', 'Products');
 define('TABLE_HEADING_MODEL', 'Model');
 define('TABLE_HEADING_QUANTITY', 'Quantity');
 define('TABLE_HEADING_PRICE', 'Price');
-?>
+
+define('QTPRO_OPTIONS_WARNING', '<strong>"QT Pro" Product Info Content-Module</strong> ist nicht installiert.');
+define('QTPRO_OPTIONS_INSTALL_NOW', '<u>Product Info Modul installieren</u>');
+define('QTPRO_HT_WARNING', '<strong>"QT Pro" Header Tag Modul</strong> ist nicht installiert oder nicht aktiviert.');
+define('QTPRO_HT_INSTALL_NOW', '<u>Header Tag installieren</u>');
