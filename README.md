@@ -32,7 +32,7 @@ To do list:
 - <strike>order class extension to avoid mods in core order class</strike>
 - <strike>replace all mods in checkout_process.php by hooks</strike>
 - <strike>Move stock checks in checkout_payment.php and checkout_confirmation.php to ht module</strike>
-- add <strike>spanish</strike> and german translations
+- <strike>add spanish and german translations</strike>
 - <strike>Add installation checks to all modules</strike>
 - <strike>Merge standard and modular product info product listing module by kymation into one universal module</strike>
 - <strike>check compatibility with ajax attribute manager</strike>
