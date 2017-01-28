@@ -204,11 +204,11 @@ function qtpro_doctor_formulate_product_investigation($facts_array, $formulate_s
 		break;
 		case 'detailed':
 			//Create Header
-			/*if ($facts_array['any_problems']) {
-				$str_ret ='<span style="color:red; font-weight: bold; font-size:1.2em;">This product needs attention!</span><br /><br />';
+			if ($facts_array['any_problems']) {
+				$str_ret = TEXT_DETAILED_STOCK_NEEDS_ATTENTION;
 			}else{
-				$str_ret ='<span style="color:green; font-weight: bold;">This product is all ok.</span><br /><br />';
-			}*/
+				$str_ret = TEXT_DETAILED_STOCK_ALL_OK;
+			}
 			
 			//Talk about summary and calc stock
 			if ($facts_array['summary_and_calc_stock_match']) {
