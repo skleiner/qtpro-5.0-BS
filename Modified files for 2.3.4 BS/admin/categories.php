@@ -2,6 +2,13 @@
 /*
   $Id$
 
+  Modified for:
+  QTpro
+  Version 5.0 BS 
+  by @raiwa 
+  info@oscaddons.com
+  www.oscaddons.com
+
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
@@ -13,11 +20,11 @@
   require('includes/application_top.php');
 
   //++++ QT Pro: Begin Added code
-	//Create the product investigation for this product that are used in this page.
-	$product_investigation = (isset($HTTP_GET_VARS['pID']))? qtpro_doctor_investigate_product($HTTP_GET_VARS['pID']) : null;
-	$qtpro_sick_count = qtpro_sick_product_count();
-	if ($qtpro_sick_count != 0) {
-	  $messageStack->add(sprintf(constant('MODULE_CONTENT_QTPRO_ADMIN_WARNING_' . strtoupper($language)), $qtpro_sick_count, tep_href_link('qtprodoctor.php')), 'error');
+  //Create the product investigation for this product that are used in this page.
+  $product_investigation = (isset($HTTP_GET_VARS['pID']))? qtpro_doctor_investigate_product($HTTP_GET_VARS['pID']) : null;
+  $qtpro_sick_count = qtpro_sick_product_count();
+  if ($qtpro_sick_count != 0) {
+    $messageStack->add(sprintf(constant('MODULE_CONTENT_QTPRO_ADMIN_WARNING_' . strtoupper($language)), $qtpro_sick_count, tep_href_link('qtprodoctor.php')), 'error');
   }
   //++++ QT Pro: End added code 
   
@@ -245,8 +252,8 @@
           unset($sql_data_array['products_quantity']);
         }
         //++++ QT Pro: End Added code
-		
-		    $products_image = new upload('products_image');
+
+        $products_image = new upload('products_image');
         $products_image->set_destination(DIR_FS_CATALOG_IMAGES);
         if ($products_image->parse() && $products_image->save()) {
           $sql_data_array['products_image'] = tep_db_prepare_input($products_image->filename);
@@ -411,10 +418,10 @@
 
   //++++ QT Pro: Begin Changed code
   if($product_investigation['any_problems']){
-  	$messageStack->add('<strong>Warning: </strong>'. qtpro_doctor_formulate_product_investigation($product_investigation, 'short_suggestion') ,'warning');
+    $messageStack->add('<strong>Warning: </strong>'. qtpro_doctor_formulate_product_investigation($product_investigation, 'short_suggestion') ,'warning');
   }
   //++++ QT Pro: End Changed code
-  
+
   require('includes/template_top.php');
 
   if ($action == 'new_product') {

@@ -2,27 +2,34 @@
 /*
   $Id$
 
+  Modified for:
+  QTpro
+  Version 5.0 BS 
+  by @raiwa 
+  info@oscaddons.com
+  www.oscaddons.com
+
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
-
+ 
   Copyright (c) 2014 osCommerce
 
   Released under the GNU General Public License
 */
 
   require('includes/application_top.php');
-  
+
   //++++ QT Pro: Begin Added code
-	$qtpro_sick_count = qtpro_sick_product_count();
-	if ($qtpro_sick_count != 0) {
-	  $messageStack->add(sprintf(constant('MODULE_CONTENT_QTPRO_ADMIN_WARNING_' . strtoupper($language)), $qtpro_sick_count, tep_href_link('qtprodoctor.php')), 'error');
+  $qtpro_sick_count = qtpro_sick_product_count();
+  if ($qtpro_sick_count != 0) {
+    $messageStack->add(sprintf(constant('MODULE_CONTENT_QTPRO_ADMIN_WARNING_' . strtoupper($language)), $qtpro_sick_count, tep_href_link('qtprodoctor.php')), 'error');
   }
+
+  $products_attributes_filename = null;
   //++++ QT Pro: End added code 
-  
+
   $languages = tep_get_languages();
   
-  $products_attributes_filename = null;
-
   $action = (isset($HTTP_GET_VARS['action']) ? $HTTP_GET_VARS['action'] : '');
 
   $option_page = (isset($HTTP_GET_VARS['option_page']) && is_numeric($HTTP_GET_VARS['option_page'])) ? $HTTP_GET_VARS['option_page'] : 1;
@@ -39,11 +46,10 @@
 
         for ($i=0, $n=sizeof($languages); $i<$n; $i ++) {
           $option_name = tep_db_prepare_input($option_name_array[$languages[$i]['id']]);
-
-//++++ QT Pro: Begin Changed code
+          //++++ QT Pro: Begin Changed code
           $track_stock=isset($HTTP_POST_VARS['track_stock'])?1:0;
           tep_db_query("insert into products_options (products_options_id, products_options_name, language_id,products_options_track_stock) values ('" . (int)$products_options_id . "', '" . tep_db_input($option_name) . "', '" . (int)$languages[$i]['id'] . "', '" . (int)$track_stock . "')");
-//++++ QT Pro: End Changed Code
+          //++++ QT Pro: End Changed Code
           }
         tep_redirect(tep_href_link('products_attributes.php', $page_info));
         break;
@@ -181,7 +187,7 @@
     $options_values = tep_db_fetch_array($options);
 ?>
               <tr>
-                <td class="pageHeading"> <?php echo $options_values['products_options_name']; ?> </td>
+                <td class="pageHeading">&nbsp;<?php echo $options_values['products_options_name']; ?>&nbsp;</td>
               </tr>
               <tr>
                 <td><table border="0" width="100%" cellspacing="0" cellpadding="2">
@@ -193,9 +199,9 @@
     if (tep_db_num_rows($products)) {
 ?>
                   <tr class="dataTableHeadingRow">
-                    <td class="dataTableHeadingContent" align="center"> <?php echo TABLE_HEADING_ID; ?> </td>
-                    <td class="dataTableHeadingContent"> <?php echo TABLE_HEADING_PRODUCT; ?> </td>
-                    <td class="dataTableHeadingContent"> <?php echo TABLE_HEADING_OPT_VALUE; ?> </td>
+                    <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo TABLE_HEADING_ID; ?>&nbsp;</td>
+                    <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_PRODUCT; ?>&nbsp;</td>
+                    <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_OPT_VALUE; ?>&nbsp;</td>
                   </tr>
                   <tr>
                     <td colspan="3"><?php echo tep_black_line(); ?></td>
@@ -206,9 +212,9 @@
         $rows++;
 ?>
                   <tr class="<?php echo (floor($rows/2) == ($rows/2) ? 'attributes-even' : 'attributes-odd'); ?>">
-                    <td align="center" class="smallText"> <?php echo $products_values['products_id']; ?> </td>
-                    <td class="smallText"> <?php echo $products_values['products_name']; ?> </td>
-                    <td class="smallText"> <?php echo $products_values['products_options_values_name']; ?> </td>
+                    <td align="center" class="smallText">&nbsp;<?php echo $products_values['products_id']; ?>&nbsp;</td>
+                    <td class="smallText">&nbsp;<?php echo $products_values['products_name']; ?>&nbsp;</td>
+                    <td class="smallText">&nbsp;<?php echo $products_values['products_options_values_name']; ?>&nbsp;</td>
                   </tr>
 <?php
       }
@@ -229,7 +235,7 @@
                     <td class="main" colspan="3"><br><?php echo TEXT_OK_TO_DELETE; ?></td>
                   </tr>
                   <tr>
-                    <td class="smallText" align="right" colspan="3"><br /><?php echo tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link('products_attributes.php', 'action=delete_option&option_id=' . $HTTP_GET_VARS['option_id'] . '&' . $page_info), 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link('products_attributes.php', $page_info)); ?>&nbsp;</td>
+                    <td class="smallText" align="right" colspan="3"><br><?php echo tep_draw_button(IMAGE_DELETE, 'trash', tep_href_link('products_attributes.php', 'action=delete_option&option_id=' . $HTTP_GET_VARS['option_id'] . '&' . $page_info), 'primary') . tep_draw_button(IMAGE_CANCEL, 'close', tep_href_link('products_attributes.php', $page_info)); ?>&nbsp;</td>
                   </tr>
 <?php
     }
@@ -240,7 +246,7 @@
   } else {
 ?>
               <tr>
-                <td colspan="3" class="pageHeading"> <?php echo HEADING_TITLE_OPT; ?> </td>
+                <td colspan="3" class="pageHeading">&nbsp;<?php echo HEADING_TITLE_OPT; ?>&nbsp;</td>
               </tr>
               <tr>
                 <td colspan="3" class="smallText" align="right">
@@ -262,16 +268,16 @@
 ?>
               </tr>
               <tr class="dataTableHeadingRow">
-                <td class="dataTableHeadingContent"> <?php echo TABLE_HEADING_ID; ?> </td>
-                <td class="dataTableHeadingContent"> <?php echo TABLE_HEADING_OPT_NAME; ?> </td>
+                <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_ID; ?>&nbsp;</td>
+                <td class="dataTableHeadingContent">&nbsp;<?php echo TABLE_HEADING_OPT_NAME; ?>&nbsp;</td>
 <?php
 //++++ QT Pro: Begin Changed code
 ?>
-                <td class="dataTableHeadingContent"> <?php echo constant('MODULE_CONTENT_QTPRO_TRACK_STOCK_' . strtoupper($language)); ?> </td>
+                <td class="dataTableHeadingContent">&nbsp;<?php echo constant('MODULE_CONTENT_QTPRO_TRACK_STOCK_' . strtoupper($language)); ?>&nbsp;</td>
 <?php
 //++++ QT Pro: End Changed Code
 ?>
-                <td class="dataTableHeadingContent" align="center"> <?php echo TABLE_HEADING_ACTION; ?> </td>
+                <td class="dataTableHeadingContent" align="center">&nbsp;<?php echo TABLE_HEADING_ACTION; ?>&nbsp;</td>
               </tr>
               <tr>
 <?php
@@ -300,7 +306,7 @@
           $inputs .= $languages[$i]['code'] . ': <input type="text" name="option_name[' . $languages[$i]['id'] . ']" size="20" value="' . $option_name['products_options_name'] . '"> <br>';
         }
 ?>
-                <td align="center" class="smallText"> <?php echo $options_values['products_options_id']; ?><input type="hidden" name="option_id" value="<?php echo $options_values['products_options_id']; ?>"> </td>
+                <td align="center" class="smallText">&nbsp;<?php echo $options_values['products_options_id']; ?><input type="hidden" name="option_id" value="<?php echo $options_values['products_options_id']; ?>">&nbsp;</td>
                 <td class="smallText"><?php echo $inputs; ?></td>
 <?php
 //++++ QT Pro: Begin Changed code
@@ -314,12 +320,12 @@
         echo '</form>' . "\n";
       } else {
 ?>
-                <td align="center" class="smallText"> <?php echo $options_values["products_options_id"]; ?> </td>
+                <td align="center" class="smallText">&nbsp;<?php echo $options_values["products_options_id"]; ?>&nbsp;</td>
                 <td class="smallText"> <?php echo $options_values["products_options_name"]; ?> </td>
 <?php
 //++++ QT Pro: Begin Changed code
 ?>
-                <td align="center" class="smallText"> <?php echo $options_values['products_options_track_stock']? tep_image('images/icons/' . 'tick.gif', ICON_TICK): tep_image('images/icons/' . 'cross.gif', ICON_CROSS); ?></td>
+                <td align="center" class="smallText">&nbsp;<?php echo $options_values['products_options_track_stock']? tep_image('images/icons/' . 'tick.gif', ICON_TICK): tep_image('images/icons/' . 'cross.gif', ICON_CROSS); ?></td>
 <?php
 //++++ QT Pro: End Changed Code
 ?>
