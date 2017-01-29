@@ -2,6 +2,13 @@
 /*
   $Id$
 
+  Modified for:
+  QTpro
+  Version 5.0 BS 
+  by @raiwa 
+  info@oscaddons.com
+  www.oscaddons.com
+
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
@@ -952,9 +959,9 @@
       tep_reset_cache_block('categories');
       tep_reset_cache_block('also_purchased');
     }
-	//++++ QT Pro: Begin Changed code
-	qtpro_doctor_amputate_all_from_product($product_id);
-	//++++ QT Pro: End Changed code
+    //++++ QT Pro: Begin Changed code
+    qtpro_doctor_amputate_all_from_product($product_id);
+    //++++ QT Pro: End Changed code
   }
   
   function tep_remove_product($product_id) {

@@ -2,9 +2,16 @@
 /*
   $Id$
 
+  Modified for:
+  QTpro
+  Version 5.0 BS 
+  by @raiwa 
+  info@oscaddons.com
+  www.oscaddons.com
+
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
-
+  
   Copyright (c) 2012 osCommerce
 
   Released under the GNU General Public License

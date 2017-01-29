@@ -2,9 +2,15 @@
 /*
   $Id$
 
+  Modified for:
+  QTpro
+  Version 5.0 BS 
+  by @raiwa 
+  info@oscaddons.com
+  www.oscaddons.com
+
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
-
   Copyright (c) 2010 osCommerce
 
   Released under the GNU General Public License
@@ -67,6 +73,7 @@
           $products[$i][$option]['options_values_id'] = $value;
           $products[$i][$option]['products_options_values_name'] = $attributes_values['products_options_values_name'];
           $products[$i][$option]['options_values_price'] = $attributes_values['options_values_price'];
+          $products[$i][$option]['price_prefix'] = $attributes_values['price_prefix'];
 //++++ QT Pro: Changed Code
           $products[$i][$option]['track_stock'] = $attributes_values['products_options_track_stock'];
         }
