@@ -2,6 +2,11 @@
 /*
   $Id$
 
+  2017 QTPro 5.0 BS
+  by @raiwa 
+  info@oscaddons.com
+  www.oscaddons.com
+
   osCommerce, Open Source E-Commerce Solutions
   http://www.oscommerce.com
 
@@ -126,6 +131,9 @@
                                                                   `products_stock_quantity` INT(11) DEFAULT '0' NOT NULL ,
                                                                   PRIMARY KEY (products_stock_id),
                                                                   UNIQUE idx_products_stock_attributes (`products_id`,`products_stock_attributes`))");
+      // Delete old configuration entries
+      tep_db_query("DELETE FROM configuration_group WHERE configuration_group_title='Prod Info (QTPro)'");
+      tep_db_query("DELETE FROM configuration WHERE configuration_key IN ('" . implode("', '", $this->old_keys()) . "')");
     }
 
     function remove() {
@@ -162,6 +170,16 @@
       return $KeysArray;
     }
 
+    function old_keys() {
+      $KeysArray =  array('PRODINFO_ATTRIBUTE_PLUGIN', 
+                          'PRODINFO_ATTRIBUTE_SHOW_OUT_OF_STOCK', 
+                          'PRODINFO_ATTRIBUTE_MARK_OUT_OF_STOCK', 
+                          'PRODINFO_ATTRIBUTE_OUT_OF_STOCK_MSGLINE', 
+                          'PRODINFO_ATTRIBUTE_NO_ADD_OUT_OF_STOCK', 
+                          'PRODINFO_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN', 
+                          'PRODINFO_ATTRIBUTE_DISPLAY_STOCK_LIST');
+      return $KeysArray;
+    }
   } // end class
 
   function shorten_string($text) {
