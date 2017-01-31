@@ -46,7 +46,7 @@ define('BUTTON_ADD','Añadir');
 define('BUTTON_UPDATE','Actualizar');
 
 // detailed product inverstigation used in qtpro_doctor_formulate_product_investigation function
-define('TEXT_DETAILED_STOCK_ALL_OK','<span style="color:green; font-weight: bold; font-size:1.5em;">Este producto está todo bien.</span><br><br>');
+define('TEXT_DETAILED_STOCK_ALL_OK','<span style="color:green; font-weight: bold; font-size:1.5em;">Este producto está correcto.</span><br><br>');
 define('TEXT_DETAILED_STOCK_NEEDS_ATTENTION','<span style="color:red; font-weight: bold; font-size:1.5em;">Este producto necesita atención!</span><br><br>');
 define('TEXT_DETAILED_STOCK_MATCH_TRUE','<span style="color:green; font-weight: bold; font-size:1.2em;">La cantidad total de existencias está bien</span><br>
 				Esto significa que el total actual de productos, que se encuentra en la base de datos, es el valor que obtenemos si lo calculamos desde cero en este momento.<br>
@@ -56,11 +56,11 @@ define('TEXT_DETAILED_STOCK_MATCH_FALSE','<span style="color:red; font-weight: b
 				<b>El stock total es: %s </b><br>
 				<b>Si lo calculamos obtenemos: %s </b><br><br>');
 define('TEXT_DETAILED_STOCK_ENTRIES_HEALTHY','<span style="color:green; font-weight: bold; font-size:1.2em;">El stock de opciones está bien</span><br>
-				Esto significa que las entradas de la base de datos para este producto están como deberían. No hay opciones que faltan en ninguna fila. No existe ninguna opción en ninguna fila donde no debería estar.<br>
+				Esto significa que las entradas de la base de datos para este producto están como deberían. No hay opciones faltantes en ninguna fila. No existe ninguna opción en ninguna fila donde no debería estar.<br>
 				<b>El número total de entradas de stock de este producto es: %s </b><br>
 				<b>Número de entradas erróneas: %s </b><br>');
 define('TEXT_DETAILED_STOCK_ENTRIES_NOT_HEALTHY','<span style="color:red; font-weight: bold; font-size:1.2em;">El stock de opciones NO está bien</span><br>
-				Esto significa que al menos una de las entradas de la base de datos de este producto está errónea. O faltan fileas de opciones o existen filas con opciones que no deberían estar.<br>
+				Esto significa que al menos una de las entradas de la base de datos de este producto está errónea, o que faltan filas de opciones o existen filas con opciones que no deberían estar.<br>
 				<b>Número total de entradas de stock de este producto: &s </b><br>
 				<b>Número de entradas erróneas: %s</b><br><br>');
 define('TEXT_DETAILED_STOCK_AUTOMATIC_SOLUTIONS_AVAILABLE','<p><span style="color:blue; font-weight: bold; font-size:1.2em;">Soluciones automáticas disponibles:</span><br>');
