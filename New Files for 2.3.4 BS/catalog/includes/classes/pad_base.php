@@ -1,6 +1,6 @@
 <?php
 /*
-      QT Pro Version 5.0
+      QT Pro Version 5.1
   
       pad_base.php
   
@@ -184,16 +184,24 @@
     function _draw_nonstocked_attributes() {
       global $currencies;
       $out = '';
-      $nonstocked_attributes = $this->_build_attributes_array(false, true);
-      foreach ($nonstocked_attributes as $nonstocked) {
-        $out .= '<div class="col-md-3">' . "\n";
-        $out .= ' <strong>' . $nonstocked['oname'] . $nonstocked['price'] . ': </strong>' . "\n";
-        $out .= '</div>' . "\n";
-        $out .= '<div class="col-md-9">' . "\n";
-        $out .=   tep_draw_pull_down_menu('id[' . $nonstocked['oid'] . ']', array_values($nonstocked['ovals'])) . "\n";
-        $out .= '</div>' . "\n";
+      if (MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_COMBINE_NON_STOCKED == 'True' && 
+          (MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_PLUGIN == 'single_dropdown' || MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_PLUGIN == 'single_radioset')) {
+        $show_nostock = false;
+      } else {
+        $show_nostock = true;
       }
-      return $out;
+      $nonstocked_attributes = $this->_build_attributes_array(false, $show_nostock);
+      if (tep_not_null($nonstocked_attributes)) {
+        foreach ($nonstocked_attributes as $nonstocked) {
+          $out .= '<div class="col-md-3">' . "\n";
+          $out .= ' <strong>' . $nonstocked['oname'] . $nonstocked['price'] . ': </strong>' . "\n";
+          $out .= '</div>' . "\n";
+          $out .= '<div class="col-md-9">' . "\n";
+          $out .=   tep_draw_pull_down_menu('id[' . $nonstocked['oid'] . ']', array_values($nonstocked['ovals'])) . "\n";
+          $out .= '</div>' . "\n";
+        }
+        return $out;
+      }
     }
     
 /*

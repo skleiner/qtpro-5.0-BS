@@ -1,6 +1,6 @@
 <?php
 /*
-      QT Pro Version 4.1
+      QT Pro Version 5.1
   
       pad_single_dropdown.php
   
@@ -60,8 +60,8 @@
       global $languages_id, $currencies;
       
       $out = '';
-      
-      $attributes = $this->_build_attributes_array(true, false);
+      $combine_nostock = (MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_COMBINE_NON_STOCKED == 'True')? true : false;
+      $attributes = $this->_build_attributes_array(true, $combine_nostock);
       if (sizeof($attributes) > 0) {
         $combinations = array();
         $selected_combination = 0;
@@ -72,14 +72,6 @@
           $combname .= ', ' . $attrib['oname'];
         }
         $combname=substr($combname,2);
-/*        foreach ($combinations as &$comb) {
-          $combprice = $currencies->display_price( $comb['price'] + $this->products_original_price, tep_get_tax_rate($this->products_tax_class_id));
-          echo '<br><br>$comb[text]' . $comb['text'];
-          echo '<br><br>$combprice' . $combprice;
-          $comb['text'] .= ' ' . $combprice;
-        }
-        echo '<br><br>$comb[text]' . $comb['text'];
-*/        
         $out .= '<div class="col-md-3">' . "\n";
         $out .= '<strong>' . $combname . ': </strong>' . "\n";
         $out .= '</div>' . "\n";
@@ -106,7 +98,6 @@
 */
     function _draw_out_of_stock_message_js($attributes) {
       $out = '';
-      $out .= "<tr><td>&nbsp</td><td>&nbsp\n";
   
       if (($this->show_out_of_stock == 'True') && ($this->no_add_out_of_stock == 'True')) {
         $out .= "<SCRIPT LANGUAGE=\"JavaScript\"><!--\n";
@@ -161,7 +152,6 @@
         }
         $out .= "//--></SCRIPT>\n";
       }
-      $out .= "</td></tr>\n";
       
       return $out;
     }
