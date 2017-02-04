@@ -1,4 +1,29 @@
-# qtpro-5.0-BS
+# qtpro-5.1-BS
+
+Changes versus QTpro 5.0 BS
+- stock check fix in shopping cart module
+- added option to combine untracked options in single dropdown and single radio
+
+Update from:
+QTpro 5.0 BS
+
+1. Uninstall: Admin =>Modules => Content[product_info] => QTPRO Options
+2. Upload and replace:
+
+includes/classes/pad_base.php
+includes/classes/pad_single_dropdown.php
+includes/classes/pad_single_radioset.php
+includes/modules/content/product_info/cm_pi_qtpro_options.php
+
+If you are using modular shopping cart:
+includes/modules/content/shopping_cart/cm_sc_product_listing_qtpro.php
+3. Reinstall: Admin =>Modules => Content[product_info] => QTPRO Options
+4. New option:
+Combine untracked options:
+For single drop down or singel radio: combine also options which stock is not tracked.
+
+
+qtpro-5.0-BS
 New version based on QTpro for osc 2.3 version 4.6.1 plus newr updates and fixes.
 
 Planned Changes:
