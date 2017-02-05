@@ -1,6 +1,6 @@
 <?php
 /*
-      QT Pro Version 4.1
+      QT Pro Version 5.1
   
       pad_single_radioset.php
   
@@ -56,8 +56,8 @@
       global $languages_id, $currencies;
       
       $out= '' ;
-      
-      $attributes = $this->_build_attributes_array(true, false);
+      $combine_nostock = (MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_COMBINE_NON_STOCKED == 'True')? true : false;
+      $attributes = $this->_build_attributes_array(true, $combine_nostock);
       if (sizeof($attributes) > 0) {
         $combinations = array();
         $selected_combination = 0;

@@ -2,7 +2,7 @@
 /*
   $Id$
 
-  2017 QTPro 5.0 BS
+  2017 QTPro 5.1 BS
   by @raiwa 
   info@oscaddons.com
   www.oscaddons.com
@@ -89,6 +89,7 @@
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Mark Out of Stock Attributes', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_MARK_OUT_OF_STOCK', 'Right', 'Controls how out of stock attributes are marked as out of stock.', '6', '7', 'tep_cfg_select_option(array(\'None\', \'Right\', \'Left\'), ', now())");
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Display Out of Stock Message Line', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_OUT_OF_STOCK_MSGLINE', 'True', 'If True: If an out of stock attribute combination is selected by the customer, a message line informing on this will displayed.<br>Used for multiple dropdowns only.', '6', '8', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Prevent Adding Out of Stock to Cart', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_NO_ADD_OUT_OF_STOCK', 'True', 'If True: Customer will not be able to ad a product with an out of stock attribute combination to the cart. A javascript form will be displayed.', '6', '9', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
+      tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Combine untracked options', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_COMBINE_NON_STOCKED', 'True', 'For single drop down or singel radio: combine also options which stock is not tracked.', '6', '10', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
       tep_db_query("insert into configuration (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, set_function, date_added) values ('Use Actual Price Pull Downs', 'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN', 'False', 'NOTE: If you have more than one option per product, this can only be used with a satisfying result with single_dropdown or single_radioset.<br>If True: Option prices will displayed as a final product price.<br>Default is false.</strong>', '6', '10', 'tep_cfg_select_option(array(\'True\', \'False\'), ', now())");
       // Check if option/attributes sort order is used and add configuration entry
       if (tep_db_num_rows(tep_db_query("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='". DB_DATABASE . "' AND TABLE_NAME='products_options' AND COLUMN_NAME LIKE 'products_options_sort_order'")) == 1 ) {
@@ -157,7 +158,8 @@
                           'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_MARK_OUT_OF_STOCK', 
                           'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_OUT_OF_STOCK_MSGLINE', 
                           'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_NO_ADD_OUT_OF_STOCK', 
-                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN');
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_ACTUAL_PRICE_PULL_DOWN', 
+                          'MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_ATTRIBUTE_COMBINE_NON_STOCKED');
       if (tep_db_num_rows(tep_db_query("SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='". DB_DATABASE . "' AND TABLE_NAME='products_options' AND COLUMN_NAME LIKE 'products_options_sort_order'")) == 1 ) {
         $KeysArray = array_merge($KeysArray, array('MODULE_CONTENT_PRODUCT_INFO_QTPRO_OPTIONS_USE_OPT_ATTR_SORT_ORDER'));
       }

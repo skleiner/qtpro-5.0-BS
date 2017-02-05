@@ -88,7 +88,7 @@
 
         if (STOCK_CHECK == 'true') {
           if ( isset($products[$i]['attributes']) && is_array($products[$i]['attributes']) ) {
-            $stock_check = tep_check_stock($products[$i]['id'], $products[$i]['quantity'], $products[$i]['attributes']); 
+            $stock_check = check_stock_qtpro($products[$i]['id'], $products[$i]['quantity'], $products[$i]['attributes']); 
           } else {
             $stock_check = tep_check_stock($products[$i]['id'], $products[$i]['quantity']);
           }
